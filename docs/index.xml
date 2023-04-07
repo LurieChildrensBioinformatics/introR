@@ -20,20 +20,6 @@ Swirl: learn R interactively</description>
     </item>
     
     <item>
-      <title>Class 1: Getting Started - The Basics of R Programming</title>
-      <link>https://luriechildrensbioinformatics.github.io/introR/material/class1_activities/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://luriechildrensbioinformatics.github.io/introR/material/class1_activities/</guid>
-      <description>Slides here Who is this workshop for?
-Researchers with little or no experience with R, or those who have gotten rusty and would like a refresher
-Researchers with a need/interest for using R in their research
-Who are your instructors?
-Joy - largely self-taught but avid user of R and other programming languages. Currently use a combination of R, python, bash, and nextflow in my work.
-Stella &amp;ndash; Statistician, experience with Splus (predecessor to R) and R, some python, C++</description>
-    </item>
-    
-    <item>
       <title>Who we are</title>
       <link>https://luriechildrensbioinformatics.github.io/introR/instructors/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -42,8 +28,8 @@ Stella &amp;ndash; Statistician, experience with Splus (predecessor to R) and R,
       <description>The instructors for this course are Drs. Joy Nyaanga and Stella Karuri.
 Though largely self-taught users of R and other programming languages, we both use R extensively in our respective work.
 Contact us at&amp;hellip;
-r icons::fontawesome(&amp;quot;paper-plane&amp;quot;) Joy
-r icons::fontawesome(&amp;quot;paper-plane&amp;quot;) Stella</description>
+Joy
+Stella</description>
     </item>
     
   </channel>
