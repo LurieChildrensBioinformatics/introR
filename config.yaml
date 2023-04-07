@@ -22,7 +22,8 @@ menu:
       url: "/instructors/"
       weight: 2
     - name: "Syllabus"
-      url: "https://github.com/LurieChildrensBioinformatics/introR/blob/main/syllabus.pdf"
+      url: "https://github.com/LurieChildrensBioinformatics/introR/blob/main/static/syllabus.pdf"
+      
       weight: 3
     - name: "Material"
       url: "/material/"
