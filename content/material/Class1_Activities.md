@@ -1,7 +1,7 @@
 ---
 title: "Class 1: Getting Started - The Basics of R Programming"
 author: "Joy Nyaanga"
-date: 2023-07-01
+date: 2023-04-01
 output: html_document
 editor_options: 
   markdown: 
