@@ -24,7 +24,7 @@ button, input, select, textarea, label {
 }
 
 img {
-  max-width: 100%;
+  max-width: 85%;
 }
 
 /* Typography */
@@ -172,7 +172,7 @@ body {
   margin-bottom: 34px;
   padding: 0;
   text-align: right;
-  font-size: 46px;
+  font-size: 41px;
   line-height: 58px;
 }
 
