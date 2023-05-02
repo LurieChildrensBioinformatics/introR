@@ -1,9 +1,0 @@
----
-title: "Who we are"
----
-
-The instructors for this course are Drs. Joy Nyaanga and Stella Karuri. Though largely self-taught users of R and other programming languages, we both use R extensively in our respective work.
-
-Contact us at...   
-[`r icons::fontawesome("paper-plane")` Joy Nyaanga](mailto:jnyaanga@luriechildrens.org)   
-[`r icons::fontawesome("paper-plane")` Stella Karuri](mailto:skaruri@luriechildrens.org)  
