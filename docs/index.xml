@@ -7,20 +7,6 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://luriechildrensbioinformatics.github.io/introR/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Class 1: Getting Started - The Basics of R Programming</title>
-      <link>https://luriechildrensbioinformatics.github.io/introR/material/class1_activities/</link>
-      <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://luriechildrensbioinformatics.github.io/introR/material/class1_activities/</guid>
-      <description>Slides here Who is this workshop for?
-Researchers with little or no experience with R, or those who have gotten rusty and would like a refresher
-Researchers with a need/interest for using R in their research
-Who are your instructors?
-Joy - largely self-taught but avid user of R and other programming languages. Currently use a combination of R, python, bash, and nextflow in my work.
-Stella &amp;ndash; Statistician, experience with Splus (predecessor to R) and R, some python, C++</description>
-    </item>
-    
-    <item>
       <title>Additional Resources</title>
       <link>https://luriechildrensbioinformatics.github.io/introR/resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -39,7 +25,7 @@ Swirl: learn R interactively</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://luriechildrensbioinformatics.github.io/introR/instructors/</guid>
-      <description>The instructors for this course are Drs. Joy Nyaanga and Stella Karuri. Though largely self-taught users of R and other programming languages, we both use R extensively in our respective work.
+      <description>The instructors for this workshop are Drs. Joy Nyaanga and Stella Karuri. Though largely self-taught users of R and other programming languages, we both use R extensively in our respective work.
 Contact us at&amp;hellip;
 Joy Nyaanga
 Stella Karuri</description>

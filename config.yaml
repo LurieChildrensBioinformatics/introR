@@ -18,25 +18,25 @@ menu:
     - name: Home
       url: /
       weight: 1
+    - name: Workshop details
+      url: /syllabus.pdf
+      weight: 2
     - name: Instructors
       url: /instructors/
-      weight: 2
-    - name: Syllabus
-      url: /syllabus.pdf
       weight: 3
     - name: Material
       url: /material/
       weight: 4
-    - name: Repo
-      url: https://github.com/LurieChildrensBioinformatics/introR/
-      weight: 5
     - name: Resources
       url: /resources/
+      weight: 5
+    - name: Repository
+      url: https://github.com/LurieChildrensBioinformatics/introR/
       weight: 6
 
 params:
-  description: "Summer 2023 Intro to R course."
-  footer: "Powered by [Hugo](https://gohugo.io/), [blogdown](https://github.com/rstudio/blogdown) and [the Ivy theme](https://github.com/yihui/hugo-ivy)"
+  description: "Summer 2023 Intro to R workshop."
+  footer: "Website built in R. \nPowered by [Hugo](https://gohugo.io/), [blogdown](https://github.com/rstudio/blogdown) and [the Ivy theme](https://github.com/yihui/hugo-ivy)"
   highlightjsLang: ["latex", "r", "yaml"]
   highlightjsTheme: "github"
   highlightjsVersion: "11.7.0"
