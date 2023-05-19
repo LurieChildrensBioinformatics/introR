@@ -7,6 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://luriechildrensbioinformatics.github.io/introR/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>About the Workshop</title>
+      <link>https://luriechildrensbioinformatics.github.io/introR/material/about/</link>
+      <pubDate>Fri, 19 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://luriechildrensbioinformatics.github.io/introR/material/about/</guid>
+      <description>Who is this workshop for?
+Researchers with little or no experience with R, or those who have gotten rusty and would like a refresher
+Researchers with a need or interest for using R in their work
+Who are your instructors?
+Joy &amp;ndash; a largely self-taught but avid user of R and other programming languages. I currently use a combination of R, python, bash, and nextflow in my work
+Stella &amp;ndash; a statistician with experience using S-plus (predecessor to R) and R, some python, and C++</description>
+    </item>
+    
+    <item>
       <title>Additional Resources</title>
       <link>https://luriechildrensbioinformatics.github.io/introR/resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

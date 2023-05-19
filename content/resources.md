@@ -1,5 +1,6 @@
 ---
 title: "Additional Resources"
+date: 2023-05-19
 ---
 
 1.  A non-programmer friendly introduction to the R language:

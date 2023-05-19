@@ -1,6 +1,6 @@
 ---
 title: "About the Workshop"
-date: 2023-07-25
+date: 2023-05-19
 author: "Joy Nyaanga"
 output: html_document
 editor_options: 
