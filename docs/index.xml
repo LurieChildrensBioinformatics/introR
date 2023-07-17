@@ -9,7 +9,7 @@
     <item>
       <title>About the Workshop</title>
       <link>https://luriechildrensbioinformatics.github.io/introR/material/about/</link>
-      <pubDate>Fri, 19 May 2023 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 12 Jul 2023 00:00:00 +0000</pubDate>
       
       <guid>https://luriechildrensbioinformatics.github.io/introR/material/about/</guid>
       <description>Who is this workshop for?
@@ -21,28 +21,42 @@ Stella &amp;ndash; a statistician with experience using S-plus (predecessor to R
     </item>
     
     <item>
+      <title>Day 1: R basics</title>
+      <link>https://luriechildrensbioinformatics.github.io/introR/material/day1/</link>
+      <pubDate>Wed, 12 Jul 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://luriechildrensbioinformatics.github.io/introR/material/day1/</guid>
+      <description>Slides here Basics of R R is a programming language designed for statistical modelling and data analysis. It is heavily supported by an active community, where new tools for data handling, visualization, and statistical analysis are constantly developed and shared.
+The learning goals for today are:
+become familiar with R, its syntax and basic notions become familiar with the key functionality of the tidyverse understand and write simple R scripts be able to write documents in Rmarkdown First steps R is an interpreted language meaning that you can evaluate it line by line.</description>
+    </item>
+    
+    <item>
       <title>Additional Resources</title>
       <link>https://luriechildrensbioinformatics.github.io/introR/resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://luriechildrensbioinformatics.github.io/introR/resources/</guid>
-      <description>A non-programmer friendly introduction to the R language:
-Hands-On Programming with R An intermediate-level exploration of data analysis using R&amp;rsquo;s Tidyverse packages:
+      <description> Interactive lessons
+Posit Cloud A non-programmer friendly introduction to the R language:
+Hands-On Programming with R An intermediate-level exploration of data analysis using R&amp;rsquo;s tidyverse packages:
 R for Data Science
 R for Data Science: Exercise Solutions
-Swirl: learn R interactively</description>
+Swirl: learn R interactively
+An introduction to manipulating and visualizing data in R using the tidyverse suite of packages
+RBootcamp · by Ted Laderas and Jessica Minnier </description>
     </item>
     
     <item>
-      <title>Who we are</title>
-      <link>https://luriechildrensbioinformatics.github.io/introR/instructors/</link>
+      <title>Getting started with R and RStudio on your own machine</title>
+      <link>https://luriechildrensbioinformatics.github.io/introR/install/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://luriechildrensbioinformatics.github.io/introR/instructors/</guid>
-      <description>The instructors for this workshop are Drs. Joy Nyaanga and Stella Karuri. Though largely self-taught users of R and other programming languages, we both use R extensively in our respective work.
-Contact us at&amp;hellip;
-Joy Nyaanga
-Stella Karuri</description>
+      <guid>https://luriechildrensbioinformatics.github.io/introR/install/</guid>
+      <description>Install R (first) R and RStudio are two separate programs. You must install R first, then install RStudio desktop
+Windows &amp;ndash; download from: https://cran.rstudio.com/bin/windows/base/
+Mac OS &amp;ndash; download the latest .pkg file from: https://cran.rstudio.com/bin/macosx/ (top link)
+Install RStudio (second) Select the RStudio desktop download file corresponding to your operating system from: https://posit.co/download/rstudio-desktop/#download Open RStudio Open RStudio by clicking on the RStudio icon (round blue circle with an R in the center).</description>
     </item>
     
   </channel>
