@@ -7,17 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://luriechildrensbioinformatics.github.io/introR/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>About the Workshop</title>
-      <link>https://luriechildrensbioinformatics.github.io/introR/material/about/</link>
-      <pubDate>Mon, 16 Oct 2023 00:00:00 +0000</pubDate>
+      <title>Day 3: Data Wrangling</title>
+      <link>https://luriechildrensbioinformatics.github.io/introR/material/day3/</link>
+      <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://luriechildrensbioinformatics.github.io/introR/material/about/</guid>
-      <description>Who is this workshop for?
-Researchers with little or no experience with R, or those who have gotten rusty and would like a refresher
-Researchers with a need or interest for using R in their work
-Who are your instructors?
-Joy &amp;ndash; a largely self-taught but avid user of R and other programming languages. I currently use a combination of R, python, bash, and nextflow in my work
-Stella &amp;ndash; a statistician with experience using S-plus (predecessor to R) and R, some python, and C++</description>
+      <guid>https://luriechildrensbioinformatics.github.io/introR/material/day3/</guid>
+      <description>Slides here Data Wrangling in R On Day 1 we became familiar with R, its syntax and basic coding principles. Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R. However, don&amp;rsquo;t worry if you feel like you haven&amp;rsquo;t understood everything - this is common and perfectly normal! Learning R takes time and practice.
+Today, in Session 1 we discussed what tidy and untidy data are, and why a tidy data structure is useful.</description>
+    </item>
+    
+    <item>
+      <title>Day 2: Case Study - R for Statistics</title>
+      <link>https://luriechildrensbioinformatics.github.io/introR/material/day2/</link>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://luriechildrensbioinformatics.github.io/introR/material/day2/</guid>
+      <description>Slides here </description>
     </item>
     
     <item>
@@ -32,13 +37,17 @@ become familiar with R, its syntax and basic principles know how to use R as a c
     </item>
     
     <item>
-      <title>Day 3: Data Wrangling</title>
-      <link>https://luriechildrensbioinformatics.github.io/introR/material/day3/</link>
-      <pubDate>Mon, 16 Oct 2023 00:00:00 +0000</pubDate>
+      <title>About the Workshop</title>
+      <link>https://luriechildrensbioinformatics.github.io/introR/material/about/</link>
+      <pubDate>Sun, 15 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://luriechildrensbioinformatics.github.io/introR/material/day3/</guid>
-      <description>Slides here Data Wrangling in R On Day 1 we became familiar with R, its syntax and basic coding principles. Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R. However, don&amp;rsquo;t worry if you feel like you haven&amp;rsquo;t understood everything - this is common and perfectly normal! Learning R takes time and practice.
-Today, in Session 1 we discussed what tidy and untidy data are, and why a tidy data structure is useful.</description>
+      <guid>https://luriechildrensbioinformatics.github.io/introR/material/about/</guid>
+      <description>Who is this workshop for?
+Researchers with little or no experience with R, or those who have gotten rusty and would like a refresher
+Researchers with a need or interest for using R in their work
+Who are your instructors?
+Joy &amp;ndash; a largely self-taught but avid user of R and other programming languages. I currently use a combination of R, python, bash, and nextflow in my work
+Stella &amp;ndash; a statistician with experience using S-plus (predecessor to R) and R, some python, and C++</description>
     </item>
     
     <item>

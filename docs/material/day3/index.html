@@ -91,7 +91,7 @@ Joy Nyaanga
 
 
  / 
-2023-10-16
+2023-10-18
 </h3>
 
 <hr>
@@ -230,11 +230,8 @@ We can &hellip;</p>
 <p>In Exercise 9 from Day 1, we used base R to select columns of interest:</p>
 <blockquote>
 <p>Select the columns <em>species</em>, <em>island</em>, <em>body_mass_g</em>, and <em>year</em>.</p>
-<details>
-<summary>Click for Answer</summary>
 <pre><code class="language-r">penguins[, c(&quot;species&quot;, &quot;island&quot;, &quot;body_mass_g&quot;, &quot;year&quot;)]
 </code></pre>
-</details>
 </blockquote>
 <p>In this exercise we explored the use of bracket notation for selecting variables.</p>
 <p>We are able to perform the same selection using <code>dplyr::select()</code>.</p>
@@ -244,21 +241,21 @@ Use the <code>dplyr::select()</code> function to keep only the <em>species</em>,
 <details>
 <summary>Click for Answers</summary>
 <pre><code class="language-r">penguins %&gt;%
-    dplyr::select(species, island, year)
+    dplyr::select(species, island, body_mass_g, year)
 </code></pre>
-<pre><code>## # A tibble: 344 × 3
-##    species island     year
-##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;
-##  1 Adelie  Torgersen  2007
-##  2 Adelie  Torgersen  2007
-##  3 Adelie  Torgersen  2007
-##  4 Adelie  Torgersen  2007
-##  5 Adelie  Torgersen  2007
-##  6 Adelie  Torgersen  2007
-##  7 Adelie  Torgersen  2007
-##  8 Adelie  Torgersen  2007
-##  9 Adelie  Torgersen  2007
-## 10 Adelie  Torgersen  2007
+<pre><code>## # A tibble: 344 × 4
+##    species island    body_mass_g  year
+##    &lt;fct&gt;   &lt;fct&gt;           &lt;int&gt; &lt;int&gt;
+##  1 Adelie  Torgersen        3750  2007
+##  2 Adelie  Torgersen        3800  2007
+##  3 Adelie  Torgersen        3250  2007
+##  4 Adelie  Torgersen          NA  2007
+##  5 Adelie  Torgersen        3450  2007
+##  6 Adelie  Torgersen        3650  2007
+##  7 Adelie  Torgersen        3625  2007
+##  8 Adelie  Torgersen        4675  2007
+##  9 Adelie  Torgersen        3475  2007
+## 10 Adelie  Torgersen        4250  2007
 ## # ℹ 334 more rows
 </code></pre>
 </details>
@@ -267,7 +264,7 @@ Use the <code>dplyr::select()</code> function to keep only the <em>species</em>,
 <p>We can also use <code>dplyr::select()</code> to keep a range of columns. For example, we may be interested in keeping the first 4 columns in this data: species, island, bill_length_mm, bill_depth_mm.</p>
 <blockquote>
 <p><strong>Exercise 2:</strong> 
-Select all columns from <em>species</em> to <em>bill_depth_mm</em> without writing out all column names.</p>
+Select the range of columns from <em>species</em> to <em>bill_depth_mm</em> without writing out all column names.</p>
 <details>
 <summary>Click for Answers</summary>
 <pre><code class="language-r">penguins %&gt;%
@@ -811,8 +808,8 @@ penguins_large
   <footer>
   
 <nav class="post-nav">
-  <span class="nav-prev"></span>
-  <span class="nav-next"><a href="/introR/material/day1/">Day 1: R basics</a> &rarr;</span>
+  <span class="nav-prev">&larr; <a href="/introR/material/day2/">Day 2: Case Study - R for Statistics</a></span>
+  <span class="nav-next"></span>
 </nav>
 
 

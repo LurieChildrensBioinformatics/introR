@@ -1,7 +1,7 @@
 ---
 title: 'Day 3: Data Wrangling'
 author: "Joy Nyaanga"
-date: "2023-10-16"
+date: 2023-10-18
 output: 
   html_document:
 editor_options: 
@@ -158,12 +158,9 @@ In Exercise 9 from Day 1, we used base R to select columns of interest:
 >     
 > Select the columns *species*, *island*, *body_mass_g*, and *year*.
 >
-> <details>
-> <summary>Click for Answer</summary>
 > ```{r eval=FALSE}
 > penguins[,c("species", "island", "body_mass_g", "year")]
 > ```
-> </details>
 
 In this exercise we explored the use of bracket notation for selecting variables. 
 
@@ -176,7 +173,7 @@ We are able to perform the same selection using `dplyr::select()`.
 > <summary>Click for Answers</summary>
 > ```{r}
 > penguins %>%
->   dplyr::select(species, island, year)
+>   dplyr::select(species, island, body_mass_g, year)
 > ```
 > </details>
 
@@ -185,7 +182,7 @@ We are able to perform the same selection using `dplyr::select()`.
 We can also use `dplyr::select()` to keep a range of columns. For example, we may be interested in keeping the first 4 columns in this data: species, island, bill_length_mm, bill_depth_mm.
 
 > **Exercise 2:** 
-> Select all columns from *species* to *bill_depth_mm* without writing out all column names.
+> Select the range of columns from *species* to *bill_depth_mm* without writing out all column names.
 >   
 > <details>
 > <summary>Click for Answers</summary>

@@ -1,7 +1,7 @@
 ---
 title: 'Day 3: Data Wrangling'
 author: "Joy Nyaanga"
-date: "2023-10-16"
+date: 2023-10-18
 output: 
   html_document:
 editor_options: 
@@ -190,13 +190,10 @@ In Exercise 9 from Day 1, we used base R to select columns of interest:
 >     
 > Select the columns *species*, *island*, *body_mass_g*, and *year*.
 >
-> <details>
-> <summary>Click for Answer</summary>
 > 
 > ```r
 > penguins[, c("species", "island", "body_mass_g", "year")]
 > ```
-> </details>
 
 In this exercise we explored the use of bracket notation for selecting variables. 
 
@@ -210,23 +207,23 @@ We are able to perform the same selection using `dplyr::select()`.
 > 
 > ```r
 > penguins %>%
->     dplyr::select(species, island, year)
+>     dplyr::select(species, island, body_mass_g, year)
 > ```
 > 
 > ```
-> ## # A tibble: 344 × 3
-> ##    species island     year
-> ##    <fct>   <fct>     <int>
-> ##  1 Adelie  Torgersen  2007
-> ##  2 Adelie  Torgersen  2007
-> ##  3 Adelie  Torgersen  2007
-> ##  4 Adelie  Torgersen  2007
-> ##  5 Adelie  Torgersen  2007
-> ##  6 Adelie  Torgersen  2007
-> ##  7 Adelie  Torgersen  2007
-> ##  8 Adelie  Torgersen  2007
-> ##  9 Adelie  Torgersen  2007
-> ## 10 Adelie  Torgersen  2007
+> ## # A tibble: 344 × 4
+> ##    species island    body_mass_g  year
+> ##    <fct>   <fct>           <int> <int>
+> ##  1 Adelie  Torgersen        3750  2007
+> ##  2 Adelie  Torgersen        3800  2007
+> ##  3 Adelie  Torgersen        3250  2007
+> ##  4 Adelie  Torgersen          NA  2007
+> ##  5 Adelie  Torgersen        3450  2007
+> ##  6 Adelie  Torgersen        3650  2007
+> ##  7 Adelie  Torgersen        3625  2007
+> ##  8 Adelie  Torgersen        4675  2007
+> ##  9 Adelie  Torgersen        3475  2007
+> ## 10 Adelie  Torgersen        4250  2007
 > ## # ℹ 334 more rows
 > ```
 > </details>
@@ -236,7 +233,7 @@ We are able to perform the same selection using `dplyr::select()`.
 We can also use `dplyr::select()` to keep a range of columns. For example, we may be interested in keeping the first 4 columns in this data: species, island, bill_length_mm, bill_depth_mm.
 
 > **Exercise 2:** 
-> Select all columns from *species* to *bill_depth_mm* without writing out all column names.
+> Select the range of columns from *species* to *bill_depth_mm* without writing out all column names.
 >   
 > <details>
 > <summary>Click for Answers</summary>

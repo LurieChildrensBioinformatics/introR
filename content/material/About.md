@@ -1,6 +1,6 @@
 ---
 title: "About the Workshop"
-date: 2023-10-16
+date: 2023-10-15
 output: html_document
 editor_options: 
   markdown: 
