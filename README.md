@@ -4,4 +4,4 @@ Welcome to the github repository for the Summer 2023 *"Intro to R for Researcher
 
 Workshop website: https://stanley-manne-childrens-research.github.io/introR/
 
-![Flyer](Flyer.jpeg)
+![Flyer](Flyer.png)
