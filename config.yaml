@@ -35,7 +35,7 @@ menu:
       weight: 6
 
 params:
-  description: "Summer 2023 Intro to R workshop."
+  description: "Fall 2023 Intro to R workshop."
   footer: "Website built in R. \nPowered by [Hugo](https://gohugo.io/), [blogdown](https://github.com/rstudio/blogdown) and [the Ivy theme](https://github.com/yihui/hugo-ivy)"
   highlightjsLang: ["latex", "r", "yaml"]
   highlightjsTheme: "github"

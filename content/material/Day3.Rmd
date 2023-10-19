@@ -1,0 +1,496 @@
+---
+title: 'Day 3: Data Wrangling'
+author: "Joy Nyaanga"
+date: "2023-10-26"
+output: 
+  html_document:
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, tidy = TRUE)
+```
+
+## Slides <a href="../slides/Day3.pdf" target="_blank">here</a>
+
+# Data Wrangling in R
+
+On Day 1 we became familiar with R, its syntax and basic coding principles.
+Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R.
+However, don't worry if you feel like you haven't understood everything - this is common and perfectly normal! Learning R takes time and practice.
+
+Today, in Session 1 we discussed what tidy and untidy data are, and why a tidy data structure is useful. This process of taking data from an untidy format to a tidy format is often referred to as **data wrangling**. Next we discussed the `{tidyverse}` - a collection of packages for data science in R.
+Using the powerful `{tidyverse}` allows us to "level-up" our approach to data wrangling.
+
+> **The learning goal for today's session is:**
+>
+> -   understand methods of handling and manipulating data with `{dplyr}`
+
+## Getting started with the `{tidyverse}`
+
+The very first thing we need to do is install (if you haven't already) and load the `{tidyverse}` package.
+
+```{r eval=FALSE}
+# To install
+install.packages("tidyverse")
+```
+
+```{r message=TRUE, warning=FALSE}
+# To load
+library(tidyverse)
+
+# if you are unsure whether you already have tidyverse installed. Simply execute this command first.
+```
+
+## The `{dplyr}` package
+
+As we discussed in Session 1, the `{dplyr}` package is part of the `{tidyverse}`.
+It is installed and loaded with the `{tidyverse}` package (but can actually be installed/loaded on its own as well). `dplyr` is designed to help users to manipulate or transform data. Think of the `{dplyr}` functions as **verbs** that act on data.   
+  
+The RStudio community provides a handy reference guide for the use of `{dplyr}` functions.
+Check it out [here](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
+  
+In Session 1 we covered a subset of the `{dplyr}` functions. Generally, these functions can be characterized by the component of the data they work with:
+
+**Rows**:  
+- `filter()` chooses rows based on column values.  
+
+**Columns**:  
+- `select()` changes whether or not a column is included.  
+- `rename()` changes the name of columns.  
+- `mutate()` changes the values of columns and creates new columns.  
+- `xxx_join()` adds columns, matching rows based on the keys.  
+
+**Groups of rows**:
+- `group_by()` groups rows by columns.
+- `summarize()` collapses a group into a single row.
+
+# Getting started with penguins
+
+We will revisit the [`palmerpenguins`](https://allisonhorst.github.io/palmerpenguins/) data set once again!
+On Day 1, we imported an excel file containing the penguins data.
+Today we will use the `palmerpenguins` R package.
+
+<img src="../images/penguin_hex.png" style="width:35%;"/>
+
+
+```{r eval=FALSE}
+# First install the package
+install.packages("palmerpenguins")
+```
+
+```{r message=TRUE, warning=FALSE}
+# Next load the package and assign the data
+library(palmerpenguins)
+penguins <- palmerpenguins::penguins
+```
+
+In the code chunk above, we assigned the `penguins` data set - specifying that is was from the `palmerpenguins` package using the `::` (which basically means 'look inside `palmerpenguins` for `penguins`').
+
+We have a few options for previewing the data, some of which we've discussed previously.
+We can ...
+
+1.  Click on the variable in the Environments window
+
+2.  Type the name of the variable in the Console
+
+3.  Use the following `{dplyr}` function
+
+    ```{r}
+    dplyr::glimpse(penguins)
+    ```
+  
+It looks like there are 8 variables or columns that we have to work with.
+
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+
+# The Pipe Operator
+
+Before we get into the main functions within `{dplyr}`, it is useful to discuss what is known as the **pipe operator**. The pipe operator looks like this in R `%>%`. When you see the pipe `%>%` think of it as the word 'then'. The pipe tells you to do one thing and *then* do another, pushing data from left to right.  
+
+Generally, the pipe operator allows you to string a number of different functions together in a particular order. For example, if you wanted to take data frame A and carry out function B on it, you could depict this with an arrow pointing from A to B:
+
+A -> B 
+
+If we didn't use pipes, this would look like the following in base R:
+
+```
+B(A)
+```
+
+Whereas with the pipe operator it would look like:
+
+```
+A %>% B
+```
+
+This is particularly useful if you are performing multiple actions on a data frame:
+
+A -> B -> C -> D
+
+```
+A %>% B %>% C %>% D
+```
+
+And, even more readable when each of these steps is separated out onto its own individual line of code:
+
+```
+A %>% 
+  B %>% 
+  C %>%
+  D
+```
+
+In the examples below, we'll use this pipe operator often. Just remember, it takes output from the left hand side and feeds it into the function that comes after the pipe. 
+
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+
+# Select columns using `dplyr::select()`
+
+## Select individual columns
+
+In Exercise 9 from Day 1, we used base R to select columns of interest:
+
+>     
+> Select the columns *species*, *island*, *body_mass_g*, and *year*.
+>
+> <details>
+> <summary>Click for Answer</summary>
+> ```{r eval=FALSE}
+> penguins[,c("species", "island", "body_mass_g", "year")]
+> ```
+> </details>
+
+In this exercise we explored the use of bracket notation for selecting variables. 
+
+We are able to perform the same selection using `dplyr::select()`.  
+
+> **Exercise 1:** 
+> Use the `dplyr::select()` function to keep only the *species*, *island*, *body_mass_g*, and *year* variables in our penguins data.
+>   
+> <details>
+> <summary>Click for Answers</summary>
+> ```{r}
+> penguins %>%
+>   dplyr::select(species, island, year)
+> ```
+> </details>
+
+## Select a range of columns
+
+We can also use `dplyr::select()` to keep a range of columns. For example, we may be interested in keeping the first 4 columns in this data: species, island, bill_length_mm, bill_depth_mm.
+
+> **Exercise 2:** 
+> Select all columns from *species* to *bill_depth_mm* without writing out all column names.
+>   
+> <details>
+> <summary>Click for Answers</summary>
+> ```{r}
+> penguins %>%
+>   dplyr::select(species:bill_depth_mm)
+> ```
+> </details>
+
+## Exclude columns
+
+We can also use the `dplyr::select()` function to exclude variables from our data. We use the minus sign (`-`) in front of a variable name to exclude it.
+
+> **Exercise 3:**
+> Exclude ...
+>   
+> -   The *year* and *island* columns
+> -   The range of columns from *bill_length_mm* to *body_mass_g*
+>  
+> <details>
+> <summary>Click for Answers</summary>
+> ```{r}
+> penguins %>%
+>   dplyr::select(-year, -island)
+>
+> penguins %>%
+>   dplyr::select(-(bill_length_mm:body_mass_g))
+> ```
+> </details>
+  
+## More advanced selection with {tidyselect}
+
+`dplyr::select()` is actually incredibly powerful when combined with a package called `tidyselect`. We won't focus too much on the details of the `tidyselect` package but it is great if you are working with strings. Think of these functions as "helper functions" that you can use inside `dplyr::select()`. 
+
+See some examples below:
+
+```{r}
+# choose only columns containing an underscore
+penguins %>% 
+  select(contains("_"))
+# choose only columns beginning with "b"
+penguins %>% 
+  select(starts_with("b"))
+# choose only columns ending with "mm"
+penguins %>% 
+  select(ends_with("mm"))
+```
+
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+
+# Filter rows using `dplyr::filter()`
+
+<img src="../images/dplyr_filter.jpg" style="width:98%;"/>
+
+We’ve explored how to select columns - but what if we want to select rows? To do this, we need to **filter** the data on a given criteria. Let's say we want to just select Chinstrap penguins from our `penguins` data. We can achieve this using a logical approach - i.e. extracting only rows which match our criteria (whether the penguin is Chinstrap or not). 
+
+If you remember, we accomplished this in base R with the following:
+
+```
+penguins[penguins$species == "Chinstrap", ]
+
+#Note that we need a `==` instead of a `=`
+# = assignment, == evaluation 
+```
+
+> **Exercise 4:**
+> Use `dplyr::filter()` to keep only rows where *species* is Chinstrap.
+>   
+> <details>
+> <summary>Click for Answers</summary>
+> ```{r}
+> penguins %>%
+>   dplyr::filter(species == "Chinstrap")
+> ```
+> </details>
+
+## Multiple conditions
+
+Where the `filter` function really becomes useful is when there are several criteria of interest. This is easily achieved using the logical operators detailed above. 
+
+The `dplyr::filter()` works with most logical operators:
+
+<img src="../images/boolean_operators.png" style="width:35%;"/>
+  
+Here is a graphical depiction of these operations. Blue is TRUE (to be included) and White is FALSE (not included).
+  
+<img src="../images/graphical_operators.png" style="width:65%;"/>
+
+
+The And operator is the most commonly used. So, if you just separate the logical conditions by a comma, `dplyr::filter()` will **perform the *And* operation by default**.
+
+> **Exercise 5:**
+> Use `dplyr::filter()` to...
+>
+> Keep only rows where *species* is "Gentoo" and *island* is "Biscoe".
+>
+> <details>
+> <summary>Click for Answer</summary>
+> ```{r}
+> #there are two possible solutions here:
+> penguins %>%
+>   dplyr::filter(island == "Biscoe" & species == "Gentoo")
+> penguins %>%
+>   dplyr::filter(island == "Biscoe", species == "Gentoo")
+> ```
+> </details>
+> 
+> 
+> Keep only rows where *species* is "Adelie" **or** "Gentoo"
+>   
+> <details>
+> <summary>Click for Answers</summary>
+> ```{r}
+> penguins %>%
+>   dplyr::filter(species == "Adelie" | species == "Gentoo")
+> 
+> # Another way to write this is using the %in% operator
+> penguins %>%
+>   dplyr::filter(species %in% c("Chinstrap", "Gentoo"))
+> ```
+> </details>
+> 
+> 
+> Keep only rows where *sex* is **not** "male"
+>   
+> <details>
+> <summary>Click for Answers</summary>
+> ```{r}
+> penguins %>%
+>   dplyr::filter(sex != "male")
+> ```
+> </details>
+
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+
+# Combine `dplyr::filter()` and `dplyr::select` with pipes
+
+Above we discussed that pipes are particularly useful when applying multiple functions to a data set. Let's try an example.
+
+> **Exercise 6:**
+> 
+> Using pipes, subset the penguins data to include penguins found on all islands **except** "Dream". 
+> Then display only the *island* column and those relating to their bill.
+>   
+> <details>
+> <summary>Click for Answers</summary>
+> ```{r}
+> penguins %>%
+>   dplyr::filter(island != "Dream") %>%
+>   dplyr::select(island, starts_with("bill"))
+> ```
+> </details>
+
+Exercise 6 is an example of the power of piping. The `dplyr` functions by themselves are somewhat simple, but by combining them into linear workflows with the pipe, we can accomplish more complex manipulations of data frames.
+
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+
+# Rename
+
+<img src="../images/dplyr_rename.png" style="width:70%;"/>
+
+As the function name implies, you can use `dplyr::rename()` to **rename** columns using the syntax `new_name` = `current_name`
+
+```{r}
+penguins %>%
+  dplyr::rename(Species = species)
+```
+
+It is also worth noting that you can rename a column when using `dplyr::select()`:
+
+```{r}
+penguins %>%
+  dplyr::select(Species = species)
+```
+
+However, notice that the resulting data frame **only** contains the "Species" column. `dplyr::rename()` is useful if you want to rename a column but leave all else intact.
+
+> **Exercise 7:**
+> 
+> Rename the *species* column to *species_identified*
+>   
+> <details>
+> <summary>Click for Answers</summary>
+> ```{r}
+> penguins %>%
+>   dplyr::rename(species_identified = species) 
+>
+> ```
+> </details>
+
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+
+
+# Add or mutate columns with `dplyr::mutate()`
+
+<img src="../images/dplyr_mutate.png" style="width:70%;"/>
+
+Typically, the variables we collect as raw data are not enough for all the questions we want to ask during an analysis. Oftentimes, we want to create new columns based on the values in existing columns (like performing unit conversions or finding ratios). For this we can use `dplyr::mutate()`.
+
+For example, we might want the flipper length of penguins in cm instead of mm:
+
+``` {r}
+penguins %>%
+  dplyr::mutate(flipper_length_cm = flipper_length_mm/10)
+```
+
+Try some examples yourself!
+
+> **Exercise 8:**
+> 
+> Create a new data frame from the `penguins` data that meets the following criteria:
+> -   Contains only the *species* column and a new column called *body_mass_kg*. 
+> -   Only the rows where *body_mass_kg* is **greater than 4** should be shown in the final data frame. 
+> 
+> *Hint: think about how the commands should be ordered to produce this data frame.*
+>   
+> <details>
+> <summary>Click for Answers</summary>
+> ```{r}
+> penguins_large <- penguins %>%
+>   dplyr::mutate(body_mass_kg = body_mass_g / 1000) %>%
+>   dplyr::filter(body_mass_kg > 4) %>%
+>   dplyr::select(species, body_mass_kg)
+>
+> penguins_large
+> ```
+> </details>
+
+-------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+
+# Aggregate data with `dplyr::group_by()` and `dplyr::summarize()`
+
+Commonly, when reporting analysis results we may want to provide summary statistics. `dplyr::group_by()` and `dplyr::summarize()` are functions that work together to give us summary statistics for different groups and put them into a nice table.
+
+`group_by()` assigns groups within data, and `summarize()` calculates the summary statistic for the specified group(s).
+
+**Note: Once you summarize, the data *not* being summarized is *excluded* from the new data frame**  
+
+```{r}
+penguins %>%
+  dplyr::summarize(body_mass_g_mean = mean(body_mass_g))
+
+```
+
+The output is `NA`! When `R` does calculations with missing data, it doesn't know how to evaluate them and forces the result to `NA`. To solve this, we need to add an argument to *mean* to tell R to ignore the missing values.
+
+```{r}
+penguins %>%
+  dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE))
+```
+
+Combining `dplyr::summarize()` with `dplyr::group_by()`, we can apply analysis to each group, and then combine and display the results. 
+
+**Note: groups do not change the structure of the original data. Grouping only affects how R handles the data in subsequent operations.**
+
+```{r}
+penguins %>%
+  dplyr::group_by(species) %>%
+  dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE))
+```
+Once the data is grouped, you can summarize multiple variables at the same time. For example, we could add a column indicating the minimum body mass for each species to the above example.
+
+```{r message=TRUE, warning=TRUE}
+penguins %>%
+  dplyr::group_by(species) %>%
+  dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE),
+                   body_mass_g_min = min(body_mass_g, na.rm = TRUE))
+```
+
+One last thing to keep in mind - grouping is maintained in the new data frame. In order to remove the grouping information, `dplyr::ungroup()` can be used.
+
+```
+penguins %>%
+  dplyr::group_by(species) %>%
+  dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE),
+                   body_mass_g_min = min(body_mass_g, na.rm = TRUE)) %>%
+  dplyr::ungroup()
+```
+
+> **Exercise 9:**
+> 
+> Calculate the mean, minimum, and maximum *flipper_length_mm* by *species* and *island*
+>   
+> <details>
+> <summary>Click for Answers</summary>
+> ```{r}
+> penguins %>%
+>   dplyr::group_by(species, island) %>%
+>   dplyr::summarize(flipper_length_mm_mean = mean(flipper_length_mm, na.rm = TRUE),
+                     flipper_length_mm_min = min(flipper_length_mm, na.rm = TRUE),
+                     flipper_length_mm_max = max(flipper_length_mm, na.rm = TRUE))
+>
+> ```
+> </details>
+
+
+Summarizing data in this way is a useful skill, especially to get a feel for what a data set shows or to break it down into more understandable subsets. Not to mention, manipulating data is especially useful when you want create certain types of plots!
+
+
+-------------
+Some content adapted from: [Data Wrangling with `dplyr`](https://american-stat-412612.netlify.app/material/1-04-lecture/) and [Data manipulation and visualisation in R](https://speciationgenomics.github.io/data_visualisation_handling/).
+
+All artwork by @allison_horst.

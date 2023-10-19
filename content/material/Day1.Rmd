@@ -1,6 +1,6 @@
 ---
 title: "Day 1: R basics"
-date: 2023-07-12
+date: 2023-10-24
 output: 
   html_document:
 editor_options: 
@@ -12,17 +12,20 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE, tidy = TRUE)
 ```
 
+## Slides <a href="../slides/Day1.pdf" target="_blank">here</a>
+
 # Basics of R  
   
 R is a programming language designed for statistical modelling and data analysis.
 It is heavily supported by an active community, where new tools for data handling, visualization, and statistical analysis are constantly developed and shared.
 
 > **The learning goals for today are:**
->
-> -   become familiar with R, its syntax and basic notions
-> -   become familiar with the key functionality of the tidyverse
-> -   understand and write simple R scripts
-> -   be able to write documents in Rmarkdown
+>  
+> -   become familiar with R, its syntax and basic principles  
+> -   know how to use R as a calculator  
+> -   understand and write simple R scripts  
+> -   perform basic operations on data  
+> -   be able to make simple plots  
 
 ## First steps
 
@@ -364,13 +367,15 @@ These data contain size measurements for three penguin species observed on three
 
 ## Load in data
 
+<a href="../../penguins.xlsx">Download excel file here</a>
+
 > **Exercise 8**
 >    
 > Load in the penguins.xlsx file using the Environments window
 > How would you load this data using code?
 >  
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(readxl)
 penguins <- read_excel("penguins.xlsx")
 ```
@@ -430,7 +435,7 @@ Let's explore the penguins data set using visualizations. In session 1 we were i
 
 > **Exercise 10**
 >    
-> Explore the `penguins` data set with plots! Feel free to add customizations to the plot (ie update the main figure title, change the axes labels). For help doing so, check out the help page for each function using ?function.
+> Explore the `penguins` data set with plots! Feel free to add customizations to the plot (ie update the main figure title, change the axes labels). For help doing so, check out the help page for each function using `?function`.
 >
 
 

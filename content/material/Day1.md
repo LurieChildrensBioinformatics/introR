@@ -1,6 +1,6 @@
 ---
 title: "Day 1: R basics"
-date: 2023-07-12
+date: 2023-10-24
 output: 
   html_document:
 editor_options: 
@@ -10,17 +10,20 @@ editor_options:
 
 
 
+## Slides <a href="../slides/Day1.pdf" target="_blank">here</a>
+
 # Basics of R  
   
 R is a programming language designed for statistical modelling and data analysis.
 It is heavily supported by an active community, where new tools for data handling, visualization, and statistical analysis are constantly developed and shared.
 
 > **The learning goals for today are:**
->
-> -   become familiar with R, its syntax and basic notions
-> -   become familiar with the key functionality of the tidyverse
-> -   understand and write simple R scripts
-> -   be able to write documents in Rmarkdown
+>  
+> -   become familiar with R, its syntax and basic principles  
+> -   know how to use R as a calculator  
+> -   understand and write simple R scripts  
+> -   perform basic operations on data  
+> -   be able to make simple plots  
 
 ## First steps
 
@@ -575,6 +578,8 @@ These data contain size measurements for three penguin species observed on three
 
 ## Load in data
 
+<a href="../../penguins.xlsx">Download excel file here</a>
+
 > **Exercise 8**
 >    
 > Load in the penguins.xlsx file using the Environments window
@@ -584,13 +589,6 @@ These data contain size measurements for three penguin species observed on three
 
 ```r
 library(readxl)
-```
-
-```
-## Warning: package 'readxl' was built under R version 4.2.3
-```
-
-```r
 penguins <- read_excel("penguins.xlsx")
 ```
 
@@ -627,7 +625,7 @@ We will focus on a curated subset of the raw data. This subset contains 8 variab
 > ##  8 Adelie  Torgersen        3475  2007
 > ##  9 Adelie  Torgersen        4250  2007
 > ## 10 Adelie  Torgersen        3300  2007
-> ## # … with 332 more rows
+> ## # ℹ 332 more rows
 > ```
 > </details>
 >  
@@ -656,7 +654,7 @@ We will focus on a curated subset of the raw data. This subset contains 8 variab
 > ##  8 Adelie  Torgersen        3475  2007         34.8
 > ##  9 Adelie  Torgersen        4250  2007         42.5
 > ## 10 Adelie  Torgersen        3300  2007         33  
-> ## # … with 332 more rows
+> ## # ℹ 332 more rows
 > ```
 > </details>
 >  
@@ -685,7 +683,7 @@ We will focus on a curated subset of the raw data. This subset contains 8 variab
 > ##  8 Adelie  Biscoe        3900  2009         39  
 > ##  9 Adelie  Biscoe        3175  2009         31.8
 > ## 10 Adelie  Biscoe        4775  2009         47.8
-> ## # … with 109 more rows
+> ## # ℹ 109 more rows
 > ```
 > </details>
 
@@ -703,7 +701,7 @@ Let's explore the penguins data set using visualizations. In session 1 we were i
 
 > **Exercise 10**
 >    
-> Explore the `penguins` data set with plots! Feel free to add customizations to the plot (ie update the main figure title, change the axes labels). For help doing so, check out the help page for each function using ?function.
+> Explore the `penguins` data set with plots! Feel free to add customizations to the plot (ie update the main figure title, change the axes labels). For help doing so, check out the help page for each function using `?function`.
 >
 
 

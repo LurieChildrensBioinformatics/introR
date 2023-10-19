@@ -1,6 +1,16 @@
 ---
-title: "Getting started with R and RStudio on your own machine"
+title: "Getting started with R and RStudio on your personal machine"
 ---
+
+> *Please note, these instructions are for installing R/RStudio on your personal machine and **do not** apply to Lurie managed devices.*
+
+# Security documentation
+
+When handling R and RStudio on a Lurie managed device, please refer to the following security documentation.
+
+-   Security Best Practices for Using R and Rstudio in the Intro to R workshop: <a href="../Security_Best_Practices.pdf">here</a>
+
+-   Guidance on the Use of R and RStudio: <a href="../Use_Guidance.pdf">here</a>
 
 # Install R (first)
 

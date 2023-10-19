@@ -7,56 +7,31 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://luriechildrensbioinformatics.github.io/introR/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>About the Workshop</title>
-      <link>https://luriechildrensbioinformatics.github.io/introR/material/about/</link>
-      <pubDate>Wed, 12 Jul 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://luriechildrensbioinformatics.github.io/introR/material/about/</guid>
-      <description>Who is this workshop for?
-Researchers with little or no experience with R, or those who have gotten rusty and would like a refresher
-Researchers with a need or interest for using R in their work
-Who are your instructors?
-Joy &amp;ndash; a largely self-taught but avid user of R and other programming languages. I currently use a combination of R, python, bash, and nextflow in my work
-Stella &amp;ndash; a statistician with experience using S-plus (predecessor to R) and R, some python, and C++</description>
-    </item>
-    
-    <item>
-      <title>Day 1: R basics</title>
-      <link>https://luriechildrensbioinformatics.github.io/introR/material/day1/</link>
-      <pubDate>Wed, 12 Jul 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://luriechildrensbioinformatics.github.io/introR/material/day1/</guid>
-      <description>Slides here Basics of R R is a programming language designed for statistical modelling and data analysis. It is heavily supported by an active community, where new tools for data handling, visualization, and statistical analysis are constantly developed and shared.
-The learning goals for today are:
-become familiar with R, its syntax and basic notions become familiar with the key functionality of the tidyverse understand and write simple R scripts be able to write documents in Rmarkdown First steps R is an interpreted language meaning that you can evaluate it line by line.</description>
-    </item>
-    
-    <item>
       <title>Additional Resources</title>
       <link>https://luriechildrensbioinformatics.github.io/introR/resources/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://luriechildrensbioinformatics.github.io/introR/resources/</guid>
-      <description> Interactive lessons
+      <description>Interactive lessons
 Posit Cloud A non-programmer friendly introduction to the R language:
-Hands-On Programming with R An intermediate-level exploration of data analysis using R&amp;rsquo;s tidyverse packages:
+Hands-On Programming with R Swirl: learn R interactively
+tidyverse suite of packages
+Packages homepage An intermediate-level exploration of data analysis using R&amp;rsquo;s tidyverse packages:
 R for Data Science
-R for Data Science: Exercise Solutions
-Swirl: learn R interactively
-An introduction to manipulating and visualizing data in R using the tidyverse suite of packages
-RBootcamp · by Ted Laderas and Jessica Minnier </description>
+R for Data Science: Exercise Solutions</description>
     </item>
     
     <item>
-      <title>Getting started with R and RStudio on your own machine</title>
+      <title>Getting started with R and RStudio on your personal machine</title>
       <link>https://luriechildrensbioinformatics.github.io/introR/install/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://luriechildrensbioinformatics.github.io/introR/install/</guid>
-      <description>Install R (first) R and RStudio are two separate programs. You must install R first, then install RStudio desktop
-Windows &amp;ndash; download from: https://cran.rstudio.com/bin/windows/base/
-Mac OS &amp;ndash; download the latest .pkg file from: https://cran.rstudio.com/bin/macosx/ (top link)
-Install RStudio (second) Select the RStudio desktop download file corresponding to your operating system from: https://posit.co/download/rstudio-desktop/#download Open RStudio Open RStudio by clicking on the RStudio icon (round blue circle with an R in the center).</description>
+      <description>Please note, these instructions are for installing R/RStudio on your personal machine and do not apply to Lurie managed devices.
+Security documentation When handling R and RStudio on a Lurie managed device, please refer to the following security documentation.
+Security Best Practices for Using R and Rstudio in the Intro to R workshop: here
+Guidance on the Use of R and RStudio: here
+Install R (first) R and RStudio are two separate programs.</description>
     </item>
     
   </channel>
