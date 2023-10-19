@@ -1,7 +1,7 @@
 ---
 title: 'Day 3: Data Wrangling'
 author: "Joy Nyaanga"
-date: "2023-10-26"
+date: "2023-10-16"
 output: 
   html_document:
 editor_options: 

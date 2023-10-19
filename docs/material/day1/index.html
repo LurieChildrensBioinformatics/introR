@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Day 1: R basics - Intro to R</title>
+    <meta property="og:title" content="Day 1: R basics - Intro to R">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+    
+      
+    
+
+    
+      
+      <meta property="description" content="R is a programming language designed for statistical modelling and data analysis. It is heavily supported by an active community, where new tools for data handling, visualization, and statistical &amp;hellip;">
+      <meta property="og:description" content="R is a programming language designed for statistical modelling and data analysis. It is heavily supported by an active community, where new tools for data handling, visualization, and statistical &amp;hellip;">
+      
+    
+
+    
+    
+    
+    <meta name="twitter:image" content="https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png">
+    
+    
+
+    
+
+    
+    
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css">
+
+
+
+    <link rel="stylesheet" href="/introR/css/style.css" />
+    <link rel="stylesheet" href="/introR/css/fonts.css" />
+    <link rel="stylesheet" href="/introR/css/custom.css" />
+
+  </head>
+  <body class="introR">
+    <header class="masthead">
+      <h1><a href="/introR/">Intro to R</a></h1>
+
+<p class="tagline">Fall 2023 Intro to R workshop.</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" hidden/>
+  <label id="menu-label" for="menu-check" class="unselectable" hidden>
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/introR/">Home</a></li>
+  
+  <li><a href="/introR/syllabus.pdf">Workshop details</a></li>
+  
+  <li><a href="/introR/material/">Material</a></li>
+  
+  <li><a href="/introR/resources/">Resources</a></li>
+  
+  <li><a href="https://github.com/LurieChildrensBioinformatics/introR/">Repository</a></li>
+  
+  <li><a href="/introR/install/">R Installation</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+<h1>Day 1: R basics</h1>
+
+
+
+<h3>
+
+
+
+
+
+
+2023-10-16
+</h3>
+
+<hr>
+
+
+      </header>
+
+
+
+
+
+<h2 id="slides-a-hrefslidesday1pdf-target_blankherea">Slides <a href="../slides/Day1.pdf" target="_blank">here</a></h2>
+<h1 id="basics-of-r">Basics of R</h1>
+<p>R is a programming language designed for statistical modelling and data analysis.
+It is heavily supported by an active community, where new tools for data handling, visualization, and statistical analysis are constantly developed and shared.</p>
+<blockquote>
+<p><strong>The learning goals for today are:</strong></p>
+<ul>
+<li>become familiar with R, its syntax and basic principles</li>
+<li>know how to use R as a calculator</li>
+<li>understand and write simple R scripts</li>
+<li>perform basic operations on data</li>
+<li>be able to make simple plots</li>
+</ul>
+</blockquote>
+<h2 id="first-steps">First steps</h2>
+<p>R is an interpreted language meaning that you can evaluate it line by line.
+Usually, code is stored in a <strong>script</strong>, so one does not have to retype it with each new session. However, line-by-line execution can be useful for development or debugging. Let&rsquo;s begin by executing code in the console.</p>
+<h3 id="comments">Comments</h3>
+<p>Comments are often used to explain R code. They are a great tool for increasing readability of your work. Comments can also be used to prevent execution when testing alternative code.</p>
+<p>All comments start with a <code>#</code>. R will ignore anything that begins with <code>#</code> when executing code.</p>
+<p>This is an example of using a comment before a line of code:</p>
+<pre><code class="language-r"># This is a comment
+&quot;Hello World!&quot;
+</code></pre>
+<pre><code>## [1] &quot;Hello World!&quot;
+</code></pre>
+<p>Comments can also be added at the end of a line of code:</p>
+<pre><code class="language-r">&quot;Hello World!&quot;  # This is a comment
+</code></pre>
+<pre><code>## [1] &quot;Hello World!&quot;
+</code></pre>
+<p>Note, comments do not solely have to be used to explain code, they can also be used to prevent R from executing code:</p>
+<pre><code class="language-r">#'Hello World!'
+</code></pre>
+<h3 id="using-r-as-a-calculator">Using R as a calculator</h3>
+<p>R has usual arithmetic operations (+ - * / ^).<br>
+Practice performing the operations below.</p>
+<blockquote>
+<p><strong>Exercise 1: Use the console to&hellip;</strong></p>
+<ul>
+<li>Calculate 3 + 5</li>
+<li>Calculate 10^2</li>
+<li>Calculate 4^3 -2*7+9 /2</li>
+</ul>
+<details>
+<summary>Click for Answers</summary>
+<pre><code class="language-r">3 + 5
+</code></pre>
+<pre><code>## [1] 8
+</code></pre>
+<pre><code class="language-r">10^2
+</code></pre>
+<pre><code>## [1] 100
+</code></pre>
+<pre><code class="language-r">4^3 - 2 * 7 + 9/2
+</code></pre>
+<pre><code>## [1] 54.5
+</code></pre>
+</details>
+</blockquote>
+<hr>
+<h3 id="coding-in-a-script">Coding in a script</h3>
+<p>Now let&rsquo;s explore writing code in a script&hellip;</p>
+<p><strong>Creating a new script</strong> file is simple:</p>
+<ul>
+<li>select File -&gt; New File -&gt; R Script</li>
+</ul>
+<p><strong>Typing code</strong> in the script:</p>
+<ul>
+<li>type each R command on its own line</li>
+<li>use <code>#</code> to convert text to comments</li>
+</ul>
+<p><strong>Select</strong> code you want to execute:</p>
+<ul>
+<li>place the cursor in the line of code you want to execute</li>
+<li><em>or</em> highlight the code you want to execute</li>
+</ul>
+<p><strong>Execute code</strong> in the script:</p>
+<ul>
+<li>click on the <code>Run</code> button in the top right corner of the scripting window</li>
+<li><em>or</em> type one of the following
+<ul>
+<li>Windows: cntrl + return</li>
+<li>Mac: command + return</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>Exercise 2</strong></p>
+<p>Open a new R script and save it as Practice1.R</p>
+</blockquote>
+<hr>
+<h2 id="functions">Functions</h2>
+<p>In Session 1 we were introduced to <strong>functions</strong>. R has many built-in functions. Functions are commonly called by their name followed by round brackets that enclose the function&rsquo;s arguments (where multiple arguments are separated by commas). For example, the function <code>log()</code> takes a number and returns the log value of that number. Practice using the following functions below:</p>
+<blockquote>
+<p><strong>Exercise 3: In your <code>Practice1.R</code> script&hellip;</strong></p>
+<ul>
+<li>Find the <strong>log</strong> of 100</li>
+<li>Find the <strong>mean</strong> of all values between 1 and 100</li>
+<li><strong>Round</strong> 0.958 to the nearest integer</li>
+</ul>
+<details>
+<summary>Click for Answers</summary>
+<pre><code class="language-r">log(100)
+</code></pre>
+<pre><code>## [1] 4.60517
+</code></pre>
+<pre><code class="language-r">mean(1:100)
+</code></pre>
+<pre><code>## [1] 50.5
+</code></pre>
+<pre><code class="language-r">round(0.958)
+</code></pre>
+<pre><code>## [1] 1
+</code></pre>
+</details>
+</blockquote>
+<p>Many functions allow several arguments. Take <code>round()</code> for example. It takes as input the number <code>x</code> to be rounded <em>as well as</em> another integer number, <code>digits</code>, which gives the number of digits after the comma to which <code>x</code> should be rounded.</p>
+<pre><code class="language-r"># round the number `x` to the assigned number of `digits`
+round(x = 0.958, digits = 2)
+</code></pre>
+<pre><code>## [1] 0.96
+</code></pre>
+<p><strong>Of Note:</strong>
+If all arguments are named, their order does not matter. However, it is good practice to maintain the positions expected by the function. These positions are detailed for every function under <code>help</code>. Functions can also have default values. In the case of <code>round</code>, the default value is <code>digits = 0</code>. <code>help</code> can also provide clarity as to default values.</p>
+<hr>
+<h2 id="assignment">Assignment</h2>
+<p>We can assign values to variables using <code>&lt;-</code></p>
+<pre><code class="language-r">x &lt;- 9
+8 -&gt; y
+</code></pre>
+<p>By assigning a value to a variable, that variable then appears in the environment panel. We can now ask R what that variable is:</p>
+<pre><code class="language-r">x
+</code></pre>
+<pre><code>## [1] 9
+</code></pre>
+<p>It is always good practice to give your variables meaningful names.</p>
+<pre><code class="language-r">body_temp &lt;- 98.6
+
+# a few side notes: 1. Try to avoid using spaces in variable names. R will have
+# a hard time deciphering these.  2. You can also assign variables with `=`,
+# however it is better practice to use `&lt;-`
+</code></pre>
+<blockquote>
+<p><strong>Exercise 4</strong></p>
+<p>Create two variables, <code>a</code> and <code>b</code> by assigning the values 60 and 31 to them respectively.
+Next, divide variable <code>a</code> by variable <code>b</code> and prodice an output with <strong>three</strong> decimal places.</p>
+<details>
+<summary>Click for Answer</summary>
+<pre><code class="language-r">a &lt;- 60
+b &lt;- 32
+round(x = a/b, digits = 3)
+</code></pre>
+<pre><code>## [1] 1.875
+</code></pre>
+</details>
+</blockquote>
+<h3 id="variable-types">Variable types</h3>
+<p>Variables in R can exist in one of several types:</p>
+<ul>
+<li><strong>numeric</strong> - holds numeric values</li>
+<li><strong>integer</strong> - holds whole numbers exclusively</li>
+<li><strong>character</strong> - holds string values (ie &ldquo;hello&rdquo;, &ldquo;R is fun&rdquo;)</li>
+<li><strong>logical</strong> - holds TRUE or FALSE values (sometimes called boolean)</li>
+<li><strong>NA</strong> - denotes a missing value</li>
+</ul>
+<p>You can find out what type of value something is with the function <code>class()</code>:</p>
+<pre><code class="language-r">class(123.4)
+</code></pre>
+<pre><code>## [1] &quot;numeric&quot;
+</code></pre>
+<pre><code class="language-r">class(56L)
+</code></pre>
+<pre><code>## [1] &quot;integer&quot;
+</code></pre>
+<pre><code class="language-r">class(&quot;hello world&quot;)
+</code></pre>
+<pre><code>## [1] &quot;character&quot;
+</code></pre>
+<pre><code class="language-r">class(TRUE)
+</code></pre>
+<pre><code>## [1] &quot;logical&quot;
+</code></pre>
+<hr>
+<hr>
+<h1 id="objects">Objects</h1>
+<p>Variables can be organized into data structures, or objects.</p>
+<ul>
+<li><strong>Vector</strong> - a one-dimensional data set of <em>one</em> data type</li>
+<li><strong>Matrix</strong> - a two-dimensional data set of <em>one</em> data type</li>
+<li><strong>Data frame</strong> - a two-dimensional data set of <em>any</em> data type</li>
+</ul>
+<h2 id="vectors">Vectors</h2>
+<p>Vectors are a sequence of elements all having the same type (ie c(1,2,3) or c(&ldquo;one&rdquo;,&ldquo;two&rdquo;,&ldquo;three&rdquo;)). Vectors in general can be declared with the built-in function c(). Think of this as meaning &ldquo;concatenate&rdquo; or &ldquo;combine&rdquo;. We will spend some time exploring numeric vectors.</p>
+<pre><code class="language-r">x &lt;- c(4, 7, 1, 1)  # this is now a 4-place vector
+x
+</code></pre>
+<pre><code>## [1] 4 7 1 1
+</code></pre>
+<p>You can get the length of a vector using <code>length()</code>.</p>
+<pre><code class="language-r">length(x)
+</code></pre>
+<pre><code>## [1] 4
+</code></pre>
+<p>There are also helpful functions to generate sequences of numbers:</p>
+<pre><code class="language-r">1:10  # returns 1, 2, 3, ..., 10
+seq(from = 1, to = 10, by = 1)  # returns 1, 2, 3, ..., 10
+seq(from = 1, to = 10, by = 0.5)  # returns 1, 1.5, 2, ..., 9.5, 10
+seq(from = 0, to = 1, length.out = 11)  # returns 0, 0.1, ..., 0.9, 1
+</code></pre>
+<p>Something to note, unlike some programming languages, indexing in R starts with 1, not 0!</p>
+<pre><code class="language-r">x &lt;- c(4, 7, 1, 1)  # this is now a 4-place vector
+x[2]
+</code></pre>
+<pre><code>## [1] 7
+</code></pre>
+<p>As discussed in Session 1, mathematical operations can be applied to vectors. Most functions in R operate elementwise, meaning they apply to all elements of a vector.</p>
+<pre><code class="language-r">x &lt;- c(4, 7, 1, 1)  # 4-placed vector as before
+x + 1
+</code></pre>
+<pre><code>## [1] 5 8 2 2
+</code></pre>
+<p>Some functions operate on the complete vector:</p>
+<pre><code class="language-r">sum(x)
+</code></pre>
+<pre><code>## [1] 13
+</code></pre>
+<blockquote>
+<p><strong>Exercise 5</strong></p>
+<ul>
+<li>Create a vector that contains all even numbers from 0 to 20 and assign it to a variable.</li>
+<li>Now transform the variable such that it contains only odd numbers up to 20 using mathematical operation.</li>
+<li>Bonus: Ensure that numbers above 20 are not included! [Hint: use indexing.]</li>
+</ul>
+<details>
+<summary>Click for Answer</summary>
+<pre><code class="language-r">a &lt;- seq(from = 0, to = 20, by = 2)
+a &lt;- a + 1
+# bonus below
+a &lt;- a[1:10]
+a
+</code></pre>
+<pre><code>##  [1]  1  3  5  7  9 11 13 15 17 19
+</code></pre>
+</details>
+</blockquote>
+<hr>
+<h2 id="matrices">Matrices</h2>
+<p>Matrices are declared with the function <code>matrix</code>. This function takes, for instance, a vector as an argument.</p>
+<pre><code class="language-r">x &lt;- c(4, 7, 1, 1)  # A 4-element vector
+m &lt;- matrix(x)  # Make x into a matrix
+</code></pre>
+<p>Notice that the result is a matrix with a single column. This is important. R uses so-called column-major mode, meaning it fills columns first. For example, a matrix with three columns based on a six-element vector 1, 2, &hellip; , 6 will be built by filling the first column from top to bottom, then the second column top to bottom, and so on.</p>
+<pre><code class="language-r">m &lt;- matrix(1:6, ncol = 3)
+m
+</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6
+</code></pre>
+<p>As we saw in Session 1, matrix indexing starts with the row index followed by the column index:</p>
+<pre><code class="language-r">m[1, ]  # produces first row of matrix 'm'
+</code></pre>
+<pre><code>## [1] 1 3 5
+</code></pre>
+<pre><code class="language-r">m[, 2]  # produces second column of matrix 'm'
+</code></pre>
+<pre><code>## [1] 3 4
+</code></pre>
+<hr>
+<h2 id="data-frames">Data frames</h2>
+<p>A data frame is base R’s standard format to store data in. A data frame is a list of vectors of equal length. They can be initiated with the function <code>data.frame</code>:</p>
+<pre><code class="language-r"># fake experimental data
+exp_data &lt;- data.frame(trial = 1:5, condition = c(&quot;C1&quot;, &quot;C2&quot;, &quot;C1&quot;, &quot;C3&quot;, &quot;C2&quot;),
+    response = c(121, 133, 119, 102, 156))
+exp_data
+</code></pre>
+<pre><code>##   trial condition response
+## 1     1        C1      121
+## 2     2        C2      133
+## 3     3        C1      119
+## 4     4        C3      102
+## 5     5        C2      156
+</code></pre>
+<blockquote>
+<p><strong>Exercise 6</strong></p>
+<ul>
+<li>Create a vector named <code>x</code> that contains the names of three of your favorite months of the year 
+and a vector named <code>b</code> with their associated number of days.</li>
+<li>Create a data frame that represents this information (one column with months and one with number of days). 
+Column names should represent the information they contain!</li>
+</ul>
+<details>
+<summary>Click for Answer</summary>
+<pre><code class="language-r">a &lt;- c(&quot;September&quot;, &quot;May&quot;, &quot;June&quot;)
+b &lt;- c(30, 31, 30)
+fav_months &lt;- data.frame(month = a, days = b)
+fav_months
+</code></pre>
+<pre><code>##       month days
+## 1 September   30
+## 2       May   31
+## 3      June   30
+</code></pre>
+</details>
+</blockquote>
+<p>We can access columns of a data frame using index notation, like in a matrix:</p>
+<pre><code class="language-r"># gives the values in column 2
+exp_data[, 2]
+</code></pre>
+<pre><code>## [1] &quot;C1&quot; &quot;C2&quot; &quot;C1&quot; &quot;C3&quot; &quot;C2&quot;
+</code></pre>
+<pre><code class="language-r"># gives the values in the column named 'reponse'
+exp_data$response
+</code></pre>
+<pre><code>## [1] 121 133 119 102 156
+</code></pre>
+<pre><code class="language-r">exp_data[&quot;response&quot;]
+</code></pre>
+<pre><code>##   response
+## 1      121
+## 2      133
+## 3      119
+## 4      102
+## 5      156
+</code></pre>
+<pre><code class="language-r"># gives the value of the cell in row 2, column 3
+exp_data[2, 3]
+</code></pre>
+<pre><code>## [1] 133
+</code></pre>
+<blockquote>
+<p><strong>Exercise 7</strong><br>
+Display the column of <em>months</em> from the favorite months data frame.</p>
+<details>
+<summary>Click for Answer</summary>
+<pre><code class="language-r">fav_months$month
+</code></pre>
+<pre><code>## [1] &quot;September&quot; &quot;May&quot;       &quot;June&quot;
+</code></pre>
+<pre><code class="language-r">fav_months[&quot;month&quot;]
+</code></pre>
+<pre><code>##       month
+## 1 September
+## 2       May
+## 3      June
+</code></pre>
+<pre><code class="language-r">fav_months[1]
+</code></pre>
+<pre><code>##       month
+## 1 September
+## 2       May
+## 3      June
+</code></pre>
+</details>  
+<p>Now show only the names of months <em>with greater than 30 days</em>.</p>
+<details>
+<summary>Click for Answer</summary>
+<pre><code class="language-r">fav_months[fav_months$days &gt; 30, &quot;month&quot;]
+</code></pre>
+<pre><code>## [1] &quot;May&quot;
+</code></pre>
+</details>
+</blockquote>
+<hr>
+<hr>
+<h1 id="working-with-data">Working with data</h1>
+<p>We will now explore actual data! Say hello to the <a href="https://allisonhorst.github.io/palmerpenguins/"><code>palmerpenguins</code></a></p>
+<p><img src="https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png" alt=""></p>
+<p>These data contain size measurements for three penguin species observed on three islands in the Palmer Archipelago, Antarctica. The <code>palmerpenguins</code> data were collected by Dr. Kristen Gorman with the Palmer Station Long Term Ecological Research Program from 2007 - 2009.</p>
+<h2 id="load-in-data">Load in data</h2>
+<p><a href="../../penguins.xlsx">Download excel file here</a></p>
+<blockquote>
+<p><strong>Exercise 8</strong></p>
+<p>Load in the penguins.xlsx file using the Environments window
+How would you load this data using code?</p>
+</blockquote>
+<pre><code class="language-r">library(readxl)
+penguins &lt;- read_excel(&quot;penguins.xlsx&quot;)
+</code></pre>
+<p>(Note: this data is also available in R as a package)</p>
+<h2 id="work-with-the-data">Work with the data</h2>
+<p>We will focus on a curated subset of the raw data. This subset contains 8 variables for a total of 342 penguins. Let&rsquo;s explore the data through code.</p>
+<blockquote>
+<p><strong>Exercise 9</strong></p>
+<p>Select the columns <code>species</code>, <code>island</code>, <code>body_mass_g</code>, and <code>year</code>. Save this as a variable named <code>penguins_subset</code>.</p>
+<details>
+<summary>Click for Answer</summary>
+<pre><code class="language-r">penguins_subset &lt;- penguins[, c(&quot;species&quot;, &quot;island&quot;, &quot;body_mass_g&quot;, &quot;year&quot;)]
+penguins_subset
+</code></pre>
+<pre><code>## # A tibble: 342 × 4
+##    species island    body_mass_g  year
+##    &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;
+##  1 Adelie  Torgersen        3750  2007
+##  2 Adelie  Torgersen        3800  2007
+##  3 Adelie  Torgersen        3250  2007
+##  4 Adelie  Torgersen        3450  2007
+##  5 Adelie  Torgersen        3650  2007
+##  6 Adelie  Torgersen        3625  2007
+##  7 Adelie  Torgersen        4675  2007
+##  8 Adelie  Torgersen        3475  2007
+##  9 Adelie  Torgersen        4250  2007
+## 10 Adelie  Torgersen        3300  2007
+## # ℹ 332 more rows
+</code></pre>
+</details>
+<p>Create a new column in <code>penguins_subset</code> that takes <code>body_mass_g</code> and generates <code>body_mass_kg</code></p>
+<details>
+<summary>Click for Answer</summary>
+<pre><code class="language-r">penguins_subset$body_mass_kg &lt;- penguins$body_mass_g/100
+penguins_subset
+</code></pre>
+<pre><code>## # A tibble: 342 × 5
+##    species island    body_mass_g  year body_mass_kg
+##    &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Adelie  Torgersen        3750  2007         37.5
+##  2 Adelie  Torgersen        3800  2007         38  
+##  3 Adelie  Torgersen        3250  2007         32.5
+##  4 Adelie  Torgersen        3450  2007         34.5
+##  5 Adelie  Torgersen        3650  2007         36.5
+##  6 Adelie  Torgersen        3625  2007         36.2
+##  7 Adelie  Torgersen        4675  2007         46.8
+##  8 Adelie  Torgersen        3475  2007         34.8
+##  9 Adelie  Torgersen        4250  2007         42.5
+## 10 Adelie  Torgersen        3300  2007         33  
+## # ℹ 332 more rows
+</code></pre>
+</details>
+<p>Filter <code>penguins_subset</code> to include data only from the <em>year 2009</em></p>
+<details>
+<summary>Click for Answer</summary>
+<pre><code class="language-r">penguins_subset &lt;- penguins_subset[penguins_subset$year == 2009, ]
+penguins_subset
+</code></pre>
+<pre><code>## # A tibble: 119 × 5
+##    species island body_mass_g  year body_mass_kg
+##    &lt;chr&gt;   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;
+##  1 Adelie  Biscoe        3725  2009         37.2
+##  2 Adelie  Biscoe        4725  2009         47.2
+##  3 Adelie  Biscoe        3075  2009         30.8
+##  4 Adelie  Biscoe        4250  2009         42.5
+##  5 Adelie  Biscoe        2925  2009         29.2
+##  6 Adelie  Biscoe        3550  2009         35.5
+##  7 Adelie  Biscoe        3750  2009         37.5
+##  8 Adelie  Biscoe        3900  2009         39  
+##  9 Adelie  Biscoe        3175  2009         31.8
+## 10 Adelie  Biscoe        4775  2009         47.8
+## # ℹ 109 more rows
+</code></pre>
+</details>
+</blockquote>
+<h2 id="graphical-exploration">Graphical exploration</h2>
+<p>Let&rsquo;s explore the penguins data set using visualizations. In session 1 we were introduced to histograms and boxplots. Here&rsquo;s a quick summary of a few plotting functions that may be useful:</p>
+<p><code>hist(data$x)</code> creates a histogram<br>
+<code>barplot(data$x)</code> creates a barplot<br>
+<code>plot(data$x, data$y)</code> creates a scatterplot<br>
+<code>boxplot(data$y ~ data$x)</code> creates a boxplot</p>
+<p><em>For additional base R plotting resources, check out <a href="http://www.sthda.com/english/wiki/r-base-graphs">this page</a>.</em></p>
+<blockquote>
+<p><strong>Exercise 10</strong></p>
+<p>Explore the <code>penguins</code> data set with plots! Feel free to add customizations to the plot (ie update the main figure title, change the axes labels). For help doing so, check out the help page for each function using <code>?function</code>.</p>
+</blockquote>
+<hr>
+<p>Some content adapted from: <a href="https://michael-franke.github.io/intro-data-analysis/">https://michael-franke.github.io/intro-data-analysis/</a></p>
+
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/introR/material/day3/">Day 3: Data Wrangling</a></span>
+  <span class="nav-next"><a href="/introR/material/about/">About the Workshop</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="//cdn.jsdelivr.net/npm/@xiee/utils/js/math-code.js" defer></script>
+<script src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+
+<script src="//cdn.jsdelivr.net/npm/@xiee/utils/js/center-img.js" defer></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.jsdelivr.net/combine/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js,npm/@xiee/utils/js/load-highlight.js" defer></script>
+
+
+
+  
+  <hr>
+  <div class="copyright">Website built in R.
+Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="https://github.com/rstudio/blogdown">blogdown</a> and <a href="https://github.com/yihui/hugo-ivy">the Ivy theme</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+

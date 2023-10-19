@@ -1,6 +1,6 @@
 ---
 title: "Day 1: R basics"
-date: 2023-10-24
+date: 2023-10-16
 output: 
   html_document:
 editor_options: 

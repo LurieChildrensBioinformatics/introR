@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Welcome! on Intro to R</title>
-    <link>https://luriechildrensbioinformatics.github.io/introR/</link>
-    <description>Recent content in Welcome! on Intro to R</description>
+    <title>Materials on Intro to R</title>
+    <link>https://luriechildrensbioinformatics.github.io/introR/material/</link>
+    <description>Recent content in Materials on Intro to R</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://luriechildrensbioinformatics.github.io/introR/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Mon, 16 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://luriechildrensbioinformatics.github.io/introR/material/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About the Workshop</title>
       <link>https://luriechildrensbioinformatics.github.io/introR/material/about/</link>
@@ -39,34 +40,6 @@ become familiar with R, its syntax and basic principles know how to use R as a c
       <guid>https://luriechildrensbioinformatics.github.io/introR/material/day3/</guid>
       <description>Slides here Data Wrangling in R On Day 1 we became familiar with R, its syntax and basic coding principles. Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R. However, don&amp;rsquo;t worry if you feel like you haven&amp;rsquo;t understood everything - this is common and perfectly normal! Learning R takes time and practice.
 Today, in Session 1 we discussed what tidy and untidy data are, and why a tidy data structure is useful.</description>
-    </item>
-    
-    <item>
-      <title>Additional Resources</title>
-      <link>https://luriechildrensbioinformatics.github.io/introR/resources/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://luriechildrensbioinformatics.github.io/introR/resources/</guid>
-      <description>Interactive lessons
-Posit Cloud A non-programmer friendly introduction to the R language:
-Hands-On Programming with R Swirl: learn R interactively
-tidyverse suite of packages
-Packages homepage An intermediate-level exploration of data analysis using R&amp;rsquo;s tidyverse packages:
-R for Data Science
-R for Data Science: Exercise Solutions</description>
-    </item>
-    
-    <item>
-      <title>Getting started with R and RStudio on your personal machine</title>
-      <link>https://luriechildrensbioinformatics.github.io/introR/install/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://luriechildrensbioinformatics.github.io/introR/install/</guid>
-      <description>Please note, these instructions are for installing R/RStudio on your personal machine and do not apply to Lurie managed devices.
-Security documentation When handling R and RStudio on a Lurie managed device, please refer to the following security documentation.
-Security Best Practices for Using R and Rstudio in the Intro to R workshop: here
-Guidance on the Use of R and RStudio: here
-Install R (first) R and RStudio are two separate programs.</description>
     </item>
     
   </channel>

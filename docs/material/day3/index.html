@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Day 3: Data Wrangling - Intro to R</title>
+    <meta property="og:title" content="Day 3: Data Wrangling - Intro to R">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+    
+      
+    
+
+    
+      
+      <meta property="description" content="On Day 1 we became familiar with R, its syntax and basic coding principles. Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R. However, &amp;hellip;">
+      <meta property="og:description" content="On Day 1 we became familiar with R, its syntax and basic coding principles. Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R. However, &amp;hellip;">
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css">
+
+
+
+    <link rel="stylesheet" href="/introR/css/style.css" />
+    <link rel="stylesheet" href="/introR/css/fonts.css" />
+    <link rel="stylesheet" href="/introR/css/custom.css" />
+
+  </head>
+  <body class="introR">
+    <header class="masthead">
+      <h1><a href="/introR/">Intro to R</a></h1>
+
+<p class="tagline">Fall 2023 Intro to R workshop.</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" hidden/>
+  <label id="menu-label" for="menu-check" class="unselectable" hidden>
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/introR/">Home</a></li>
+  
+  <li><a href="/introR/syllabus.pdf">Workshop details</a></li>
+  
+  <li><a href="/introR/material/">Material</a></li>
+  
+  <li><a href="/introR/resources/">Resources</a></li>
+  
+  <li><a href="https://github.com/LurieChildrensBioinformatics/introR/">Repository</a></li>
+  
+  <li><a href="/introR/install/">R Installation</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+<h1>Day 3: Data Wrangling</h1>
+
+
+
+<h3>
+
+Joy Nyaanga
+
+
+
+
+
+
+ / 
+2023-10-16
+</h3>
+
+<hr>
+
+
+      </header>
+
+
+
+
+
+<h2 id="slides-a-hrefslidesday3pdf-target_blankherea">Slides <a href="../slides/Day3.pdf" target="_blank">here</a></h2>
+<h1 id="data-wrangling-in-r">Data Wrangling in R</h1>
+<p>On Day 1 we became familiar with R, its syntax and basic coding principles.
+Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R.
+However, don&rsquo;t worry if you feel like you haven&rsquo;t understood everything - this is common and perfectly normal! Learning R takes time and practice.</p>
+<p>Today, in Session 1 we discussed what tidy and untidy data are, and why a tidy data structure is useful. This process of taking data from an untidy format to a tidy format is often referred to as <strong>data wrangling</strong>. Next we discussed the <code>{tidyverse}</code> - a collection of packages for data science in R.
+Using the powerful <code>{tidyverse}</code> allows us to &ldquo;level-up&rdquo; our approach to data wrangling.</p>
+<blockquote>
+<p><strong>The learning goal for today&rsquo;s session is:</strong></p>
+<ul>
+<li>understand methods of handling and manipulating data with <code>{dplyr}</code></li>
+</ul>
+</blockquote>
+<h2 id="getting-started-with-the-tidyverse">Getting started with the <code>{tidyverse}</code></h2>
+<p>The very first thing we need to do is install (if you haven&rsquo;t already) and load the <code>{tidyverse}</code> package.</p>
+<pre><code class="language-r"># To install
+install.packages(&quot;tidyverse&quot;)
+</code></pre>
+<pre><code class="language-r"># To load
+library(tidyverse)
+</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.0.10     ✔ readr     2.1.4 
+## ✔ forcats   1.0.0      ✔ stringr   1.5.0 
+## ✔ ggplot2   3.4.4      ✔ tibble    3.1.8 
+## ✔ lubridate 1.9.3      ✔ tidyr     1.3.0 
+## ✔ purrr     1.0.2      
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
+</code></pre>
+<pre><code class="language-r"># if you are unsure whether you already have tidyverse installed. Simply
+# execute this command first.
+</code></pre>
+<h2 id="the-dplyr-package">The <code>{dplyr}</code> package</h2>
+<p>As we discussed in Session 1, the <code>{dplyr}</code> package is part of the <code>{tidyverse}</code>.
+It is installed and loaded with the <code>{tidyverse}</code> package (but can actually be installed/loaded on its own as well). <code>dplyr</code> is designed to help users to manipulate or transform data. Think of the <code>{dplyr}</code> functions as <strong>verbs</strong> that act on data.</p>
+<p>The RStudio community provides a handy reference guide for the use of <code>{dplyr}</code> functions.
+Check it out <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">here</a>.</p>
+<p>In Session 1 we covered a subset of the <code>{dplyr}</code> functions. Generally, these functions can be characterized by the component of the data they work with:</p>
+<p><strong>Rows</strong>:</p>
+<ul>
+<li><code>filter()</code> chooses rows based on column values.</li>
+</ul>
+<p><strong>Columns</strong>:</p>
+<ul>
+<li><code>select()</code> changes whether or not a column is included.</li>
+<li><code>rename()</code> changes the name of columns.</li>
+<li><code>mutate()</code> changes the values of columns and creates new columns.</li>
+<li><code>xxx_join()</code> adds columns, matching rows based on the keys.</li>
+</ul>
+<p><strong>Groups of rows</strong>:</p>
+<ul>
+<li><code>group_by()</code> groups rows by columns.</li>
+<li><code>summarize()</code> collapses a group into a single row.</li>
+</ul>
+<h1 id="getting-started-with-penguins">Getting started with penguins</h1>
+<p>We will revisit the <a href="https://allisonhorst.github.io/palmerpenguins/"><code>palmerpenguins</code></a> data set once again!
+On Day 1, we imported an excel file containing the penguins data.
+Today we will use the <code>palmerpenguins</code> R package.</p>
+<img src="../images/penguin_hex.png" style="width:35%;"/>
+<pre><code class="language-r"># First install the package
+install.packages(&quot;palmerpenguins&quot;)
+</code></pre>
+<pre><code class="language-r"># Next load the package and assign the data
+library(palmerpenguins)
+penguins &lt;- palmerpenguins::penguins
+</code></pre>
+<p>In the code chunk above, we assigned the <code>penguins</code> data set - specifying that is was from the <code>palmerpenguins</code> package using the <code>::</code> (which basically means &rsquo;look inside <code>palmerpenguins</code> for <code>penguins</code>&rsquo;).</p>
+<p>We have a few options for previewing the data, some of which we&rsquo;ve discussed previously.
+We can &hellip;</p>
+<ol>
+<li>
+<p>Click on the variable in the Environments window</p>
+</li>
+<li>
+<p>Type the name of the variable in the Console</p>
+</li>
+<li>
+<p>Use the following <code>{dplyr}</code> function</p>
+<pre><code class="language-r">dplyr::glimpse(penguins)
+</code></pre>
+<pre><code>## Rows: 344
+## Columns: 8
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…
+</code></pre>
+</li>
+</ol>
+<p>It looks like there are 8 variables or columns that we have to work with.</p>
+<hr>
+<hr>
+<h1 id="the-pipe-operator">The Pipe Operator</h1>
+<p>Before we get into the main functions within <code>{dplyr}</code>, it is useful to discuss what is known as the <strong>pipe operator</strong>. The pipe operator looks like this in R <code>%&gt;%</code>. When you see the pipe <code>%&gt;%</code> think of it as the word &rsquo;then&rsquo;. The pipe tells you to do one thing and <em>then</em> do another, pushing data from left to right.</p>
+<p>Generally, the pipe operator allows you to string a number of different functions together in a particular order. For example, if you wanted to take data frame A and carry out function B on it, you could depict this with an arrow pointing from A to B:</p>
+<p>A -&gt; B</p>
+<p>If we didn&rsquo;t use pipes, this would look like the following in base R:</p>
+<pre><code>B(A)
+</code></pre>
+<p>Whereas with the pipe operator it would look like:</p>
+<pre><code>A %&gt;% B
+</code></pre>
+<p>This is particularly useful if you are performing multiple actions on a data frame:</p>
+<p>A -&gt; B -&gt; C -&gt; D</p>
+<pre><code>A %&gt;% B %&gt;% C %&gt;% D
+</code></pre>
+<p>And, even more readable when each of these steps is separated out onto its own individual line of code:</p>
+<pre><code>A %&gt;% 
+  B %&gt;% 
+  C %&gt;%
+  D
+</code></pre>
+<p>In the examples below, we&rsquo;ll use this pipe operator often. Just remember, it takes output from the left hand side and feeds it into the function that comes after the pipe.</p>
+<hr>
+<hr>
+<h1 id="select-columns-using-dplyrselect">Select columns using <code>dplyr::select()</code></h1>
+<h2 id="select-individual-columns">Select individual columns</h2>
+<p>In Exercise 9 from Day 1, we used base R to select columns of interest:</p>
+<blockquote>
+<p>Select the columns <em>species</em>, <em>island</em>, <em>body_mass_g</em>, and <em>year</em>.</p>
+<details>
+<summary>Click for Answer</summary>
+<pre><code class="language-r">penguins[, c(&quot;species&quot;, &quot;island&quot;, &quot;body_mass_g&quot;, &quot;year&quot;)]
+</code></pre>
+</details>
+</blockquote>
+<p>In this exercise we explored the use of bracket notation for selecting variables.</p>
+<p>We are able to perform the same selection using <code>dplyr::select()</code>.</p>
+<blockquote>
+<p><strong>Exercise 1:</strong> 
+Use the <code>dplyr::select()</code> function to keep only the <em>species</em>, <em>island</em>, <em>body_mass_g</em>, and <em>year</em> variables in our penguins data.</p>
+<details>
+<summary>Click for Answers</summary>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::select(species, island, year)
+</code></pre>
+<pre><code>## # A tibble: 344 × 3
+##    species island     year
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;
+##  1 Adelie  Torgersen  2007
+##  2 Adelie  Torgersen  2007
+##  3 Adelie  Torgersen  2007
+##  4 Adelie  Torgersen  2007
+##  5 Adelie  Torgersen  2007
+##  6 Adelie  Torgersen  2007
+##  7 Adelie  Torgersen  2007
+##  8 Adelie  Torgersen  2007
+##  9 Adelie  Torgersen  2007
+## 10 Adelie  Torgersen  2007
+## # ℹ 334 more rows
+</code></pre>
+</details>
+</blockquote>
+<h2 id="select-a-range-of-columns">Select a range of columns</h2>
+<p>We can also use <code>dplyr::select()</code> to keep a range of columns. For example, we may be interested in keeping the first 4 columns in this data: species, island, bill_length_mm, bill_depth_mm.</p>
+<blockquote>
+<p><strong>Exercise 2:</strong> 
+Select all columns from <em>species</em> to <em>bill_depth_mm</em> without writing out all column names.</p>
+<details>
+<summary>Click for Answers</summary>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::select(species:bill_depth_mm)
+</code></pre>
+<pre><code>## # A tibble: 344 × 4
+##    species island    bill_length_mm bill_depth_mm
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;
+##  1 Adelie  Torgersen           39.1          18.7
+##  2 Adelie  Torgersen           39.5          17.4
+##  3 Adelie  Torgersen           40.3          18  
+##  4 Adelie  Torgersen           NA            NA  
+##  5 Adelie  Torgersen           36.7          19.3
+##  6 Adelie  Torgersen           39.3          20.6
+##  7 Adelie  Torgersen           38.9          17.8
+##  8 Adelie  Torgersen           39.2          19.6
+##  9 Adelie  Torgersen           34.1          18.1
+## 10 Adelie  Torgersen           42            20.2
+## # ℹ 334 more rows
+</code></pre>
+</details>
+</blockquote>
+<h2 id="exclude-columns">Exclude columns</h2>
+<p>We can also use the <code>dplyr::select()</code> function to exclude variables from our data. We use the minus sign (<code>-</code>) in front of a variable name to exclude it.</p>
+<blockquote>
+<p><strong>Exercise 3:</strong>
+Exclude &hellip;</p>
+<ul>
+<li>The <em>year</em> and <em>island</em> columns</li>
+<li>The range of columns from <em>bill_length_mm</em> to <em>body_mass_g</em></li>
+</ul>
+<details>
+<summary>Click for Answers</summary>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::select(-year, -island)
+</code></pre>
+<pre><code>## # A tibble: 344 × 6
+##    species bill_length_mm bill_depth_mm flipper_length_mm body_mass_g sex   
+##    &lt;fct&gt;            &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt; &lt;fct&gt; 
+##  1 Adelie            39.1          18.7               181        3750 male  
+##  2 Adelie            39.5          17.4               186        3800 female
+##  3 Adelie            40.3          18                 195        3250 female
+##  4 Adelie            NA            NA                  NA          NA &lt;NA&gt;  
+##  5 Adelie            36.7          19.3               193        3450 female
+##  6 Adelie            39.3          20.6               190        3650 male  
+##  7 Adelie            38.9          17.8               181        3625 female
+##  8 Adelie            39.2          19.6               195        4675 male  
+##  9 Adelie            34.1          18.1               193        3475 &lt;NA&gt;  
+## 10 Adelie            42            20.2               190        4250 &lt;NA&gt;  
+## # ℹ 334 more rows
+</code></pre>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::select(-(bill_length_mm:body_mass_g))
+</code></pre>
+<pre><code>## # A tibble: 344 × 4
+##    species island    sex     year
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;
+##  1 Adelie  Torgersen male    2007
+##  2 Adelie  Torgersen female  2007
+##  3 Adelie  Torgersen female  2007
+##  4 Adelie  Torgersen &lt;NA&gt;    2007
+##  5 Adelie  Torgersen female  2007
+##  6 Adelie  Torgersen male    2007
+##  7 Adelie  Torgersen female  2007
+##  8 Adelie  Torgersen male    2007
+##  9 Adelie  Torgersen &lt;NA&gt;    2007
+## 10 Adelie  Torgersen &lt;NA&gt;    2007
+## # ℹ 334 more rows
+</code></pre>
+</details>
+</blockquote>
+<h2 id="more-advanced-selection-with-tidyselect">More advanced selection with {tidyselect}</h2>
+<p><code>dplyr::select()</code> is actually incredibly powerful when combined with a package called <code>tidyselect</code>. We won&rsquo;t focus too much on the details of the <code>tidyselect</code> package but it is great if you are working with strings. Think of these functions as &ldquo;helper functions&rdquo; that you can use inside <code>dplyr::select()</code>.</p>
+<p>See some examples below:</p>
+<pre><code class="language-r"># choose only columns containing an underscore
+penguins %&gt;%
+    select(contains(&quot;_&quot;))
+</code></pre>
+<pre><code>## # A tibble: 344 × 4
+##    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##             &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1           39.1          18.7               181        3750
+##  2           39.5          17.4               186        3800
+##  3           40.3          18                 195        3250
+##  4           NA            NA                  NA          NA
+##  5           36.7          19.3               193        3450
+##  6           39.3          20.6               190        3650
+##  7           38.9          17.8               181        3625
+##  8           39.2          19.6               195        4675
+##  9           34.1          18.1               193        3475
+## 10           42            20.2               190        4250
+## # ℹ 334 more rows
+</code></pre>
+<pre><code class="language-r"># choose only columns beginning with 'b'
+penguins %&gt;%
+    select(starts_with(&quot;b&quot;))
+</code></pre>
+<pre><code>## # A tibble: 344 × 3
+##    bill_length_mm bill_depth_mm body_mass_g
+##             &lt;dbl&gt;         &lt;dbl&gt;       &lt;int&gt;
+##  1           39.1          18.7        3750
+##  2           39.5          17.4        3800
+##  3           40.3          18          3250
+##  4           NA            NA            NA
+##  5           36.7          19.3        3450
+##  6           39.3          20.6        3650
+##  7           38.9          17.8        3625
+##  8           39.2          19.6        4675
+##  9           34.1          18.1        3475
+## 10           42            20.2        4250
+## # ℹ 334 more rows
+</code></pre>
+<pre><code class="language-r"># choose only columns ending with 'mm'
+penguins %&gt;%
+    select(ends_with(&quot;mm&quot;))
+</code></pre>
+<pre><code>## # A tibble: 344 × 3
+##    bill_length_mm bill_depth_mm flipper_length_mm
+##             &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;
+##  1           39.1          18.7               181
+##  2           39.5          17.4               186
+##  3           40.3          18                 195
+##  4           NA            NA                  NA
+##  5           36.7          19.3               193
+##  6           39.3          20.6               190
+##  7           38.9          17.8               181
+##  8           39.2          19.6               195
+##  9           34.1          18.1               193
+## 10           42            20.2               190
+## # ℹ 334 more rows
+</code></pre>
+<hr>
+<hr>
+<h1 id="filter-rows-using-dplyrfilter">Filter rows using <code>dplyr::filter()</code></h1>
+<img src="../images/dplyr_filter.jpg" style="width:98%;"/>
+<p>We’ve explored how to select columns - but what if we want to select rows? To do this, we need to <strong>filter</strong> the data on a given criteria. Let&rsquo;s say we want to just select Chinstrap penguins from our <code>penguins</code> data. We can achieve this using a logical approach - i.e. extracting only rows which match our criteria (whether the penguin is Chinstrap or not).</p>
+<p>If you remember, we accomplished this in base R with the following:</p>
+<pre><code>penguins[penguins$species == &quot;Chinstrap&quot;, ]
+
+#Note that we need a `==` instead of a `=`
+# = assignment, == evaluation 
+</code></pre>
+<blockquote>
+<p><strong>Exercise 4:</strong>
+Use <code>dplyr::filter()</code> to keep only rows where <em>species</em> is Chinstrap.</p>
+<details>
+<summary>Click for Answers</summary>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::filter(species == &quot;Chinstrap&quot;)
+</code></pre>
+<pre><code>## # A tibble: 68 × 8
+##    species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;     &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Chinstrap Dream            46.5          17.9               192        3500
+##  2 Chinstrap Dream            50            19.5               196        3900
+##  3 Chinstrap Dream            51.3          19.2               193        3650
+##  4 Chinstrap Dream            45.4          18.7               188        3525
+##  5 Chinstrap Dream            52.7          19.8               197        3725
+##  6 Chinstrap Dream            45.2          17.8               198        3950
+##  7 Chinstrap Dream            46.1          18.2               178        3250
+##  8 Chinstrap Dream            51.3          18.2               197        3750
+##  9 Chinstrap Dream            46            18.9               195        4150
+## 10 Chinstrap Dream            51.3          19.9               198        3700
+## # ℹ 58 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+</code></pre>
+</details>
+</blockquote>
+<h2 id="multiple-conditions">Multiple conditions</h2>
+<p>Where the <code>filter</code> function really becomes useful is when there are several criteria of interest. This is easily achieved using the logical operators detailed above.</p>
+<p>The <code>dplyr::filter()</code> works with most logical operators:</p>
+<img src="../images/boolean_operators.png" style="width:35%;"/>
+<p>Here is a graphical depiction of these operations. Blue is TRUE (to be included) and White is FALSE (not included).</p>
+<img src="../images/graphical_operators.png" style="width:65%;"/>
+<p>The And operator is the most commonly used. So, if you just separate the logical conditions by a comma, <code>dplyr::filter()</code> will <strong>perform the <em>And</em> operation by default</strong>.</p>
+<blockquote>
+<p><strong>Exercise 5:</strong>
+Use <code>dplyr::filter()</code> to&hellip;</p>
+<p>Keep only rows where <em>species</em> is &ldquo;Gentoo&rdquo; and <em>island</em> is &ldquo;Biscoe&rdquo;.</p>
+<details>
+<summary>Click for Answer</summary>
+<pre><code class="language-r"># there are two possible solutions here:
+penguins %&gt;%
+    dplyr::filter(island == &quot;Biscoe&quot; &amp; species == &quot;Gentoo&quot;)
+</code></pre>
+<pre><code>## # A tibble: 124 × 8
+##    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Gentoo  Biscoe           46.1          13.2               211        4500
+##  2 Gentoo  Biscoe           50            16.3               230        5700
+##  3 Gentoo  Biscoe           48.7          14.1               210        4450
+##  4 Gentoo  Biscoe           50            15.2               218        5700
+##  5 Gentoo  Biscoe           47.6          14.5               215        5400
+##  6 Gentoo  Biscoe           46.5          13.5               210        4550
+##  7 Gentoo  Biscoe           45.4          14.6               211        4800
+##  8 Gentoo  Biscoe           46.7          15.3               219        5200
+##  9 Gentoo  Biscoe           43.3          13.4               209        4400
+## 10 Gentoo  Biscoe           46.8          15.4               215        5150
+## # ℹ 114 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+</code></pre>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::filter(island == &quot;Biscoe&quot;, species == &quot;Gentoo&quot;)
+</code></pre>
+<pre><code>## # A tibble: 124 × 8
+##    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Gentoo  Biscoe           46.1          13.2               211        4500
+##  2 Gentoo  Biscoe           50            16.3               230        5700
+##  3 Gentoo  Biscoe           48.7          14.1               210        4450
+##  4 Gentoo  Biscoe           50            15.2               218        5700
+##  5 Gentoo  Biscoe           47.6          14.5               215        5400
+##  6 Gentoo  Biscoe           46.5          13.5               210        4550
+##  7 Gentoo  Biscoe           45.4          14.6               211        4800
+##  8 Gentoo  Biscoe           46.7          15.3               219        5200
+##  9 Gentoo  Biscoe           43.3          13.4               209        4400
+## 10 Gentoo  Biscoe           46.8          15.4               215        5150
+## # ℹ 114 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+</code></pre>
+</details>
+<p>Keep only rows where <em>species</em> is &ldquo;Adelie&rdquo; <strong>or</strong> &ldquo;Gentoo&rdquo;</p>
+<details>
+<summary>Click for Answers</summary>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::filter(species == &quot;Adelie&quot; | species == &quot;Gentoo&quot;)
+</code></pre>
+<pre><code>## # A tibble: 276 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ℹ 266 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+</code></pre>
+<pre><code class="language-r"># Another way to write this is using the %in% operator
+penguins %&gt;%
+    dplyr::filter(species %in% c(&quot;Chinstrap&quot;, &quot;Gentoo&quot;))
+</code></pre>
+<pre><code>## # A tibble: 192 × 8
+##    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Gentoo  Biscoe           46.1          13.2               211        4500
+##  2 Gentoo  Biscoe           50            16.3               230        5700
+##  3 Gentoo  Biscoe           48.7          14.1               210        4450
+##  4 Gentoo  Biscoe           50            15.2               218        5700
+##  5 Gentoo  Biscoe           47.6          14.5               215        5400
+##  6 Gentoo  Biscoe           46.5          13.5               210        4550
+##  7 Gentoo  Biscoe           45.4          14.6               211        4800
+##  8 Gentoo  Biscoe           46.7          15.3               219        5200
+##  9 Gentoo  Biscoe           43.3          13.4               209        4400
+## 10 Gentoo  Biscoe           46.8          15.4               215        5150
+## # ℹ 182 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+</code></pre>
+</details>
+<p>Keep only rows where <em>sex</em> is <strong>not</strong> &ldquo;male&rdquo;</p>
+<details>
+<summary>Click for Answers</summary>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::filter(sex != &quot;male&quot;)
+</code></pre>
+<pre><code>## # A tibble: 165 × 8
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.5          17.4               186        3800
+##  2 Adelie  Torgersen           40.3          18                 195        3250
+##  3 Adelie  Torgersen           36.7          19.3               193        3450
+##  4 Adelie  Torgersen           38.9          17.8               181        3625
+##  5 Adelie  Torgersen           41.1          17.6               182        3200
+##  6 Adelie  Torgersen           36.6          17.8               185        3700
+##  7 Adelie  Torgersen           38.7          19                 195        3450
+##  8 Adelie  Torgersen           34.4          18.4               184        3325
+##  9 Adelie  Biscoe              37.8          18.3               174        3400
+## 10 Adelie  Biscoe              35.9          19.2               189        3800
+## # ℹ 155 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+</code></pre>
+</details>
+</blockquote>
+<hr>
+<hr>
+<h1 id="combine-dplyrfilter-and-dplyrselect-with-pipes">Combine <code>dplyr::filter()</code> and <code>dplyr::select</code> with pipes</h1>
+<p>Above we discussed that pipes are particularly useful when applying multiple functions to a data set. Let&rsquo;s try an example.</p>
+<blockquote>
+<p><strong>Exercise 6:</strong></p>
+<p>Using pipes, subset the penguins data to include penguins found on all islands <strong>except</strong> &ldquo;Dream&rdquo;. 
+Then display only the <em>island</em> column and those relating to their bill.</p>
+<details>
+<summary>Click for Answers</summary>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::filter(island != &quot;Dream&quot;) %&gt;%
+    dplyr::select(island, starts_with(&quot;bill&quot;))
+</code></pre>
+<pre><code>## # A tibble: 220 × 3
+##    island    bill_length_mm bill_depth_mm
+##    &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;
+##  1 Torgersen           39.1          18.7
+##  2 Torgersen           39.5          17.4
+##  3 Torgersen           40.3          18  
+##  4 Torgersen           NA            NA  
+##  5 Torgersen           36.7          19.3
+##  6 Torgersen           39.3          20.6
+##  7 Torgersen           38.9          17.8
+##  8 Torgersen           39.2          19.6
+##  9 Torgersen           34.1          18.1
+## 10 Torgersen           42            20.2
+## # ℹ 210 more rows
+</code></pre>
+</details>
+</blockquote>
+<p>Exercise 6 is an example of the power of piping. The <code>dplyr</code> functions by themselves are somewhat simple, but by combining them into linear workflows with the pipe, we can accomplish more complex manipulations of data frames.</p>
+<hr>
+<hr>
+<h1 id="rename">Rename</h1>
+<img src="../images/dplyr_rename.png" style="width:70%;"/>
+<p>As the function name implies, you can use <code>dplyr::rename()</code> to <strong>rename</strong> columns using the syntax <code>new_name</code> = <code>current_name</code></p>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::rename(Species = species)
+</code></pre>
+<pre><code>## # A tibble: 344 × 8
+##    Species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ℹ 334 more rows
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+</code></pre>
+<p>It is also worth noting that you can rename a column when using <code>dplyr::select()</code>:</p>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::select(Species = species)
+</code></pre>
+<pre><code>## # A tibble: 344 × 1
+##    Species
+##    &lt;fct&gt;  
+##  1 Adelie 
+##  2 Adelie 
+##  3 Adelie 
+##  4 Adelie 
+##  5 Adelie 
+##  6 Adelie 
+##  7 Adelie 
+##  8 Adelie 
+##  9 Adelie 
+## 10 Adelie 
+## # ℹ 334 more rows
+</code></pre>
+<p>However, notice that the resulting data frame <strong>only</strong> contains the &ldquo;Species&rdquo; column. <code>dplyr::rename()</code> is useful if you want to rename a column but leave all else intact.</p>
+<blockquote>
+<p><strong>Exercise 7:</strong></p>
+<p>Rename the <em>species</em> column to <em>species_identified</em></p>
+<details>
+<summary>Click for Answers</summary>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::rename(species_identified = species)
+</code></pre>
+<pre><code>## # A tibble: 344 × 8
+##    species_identified island    bill_length_mm bill_depth_mm flipper_length_mm
+##    &lt;fct&gt;              &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;
+##  1 Adelie             Torgersen           39.1          18.7               181
+##  2 Adelie             Torgersen           39.5          17.4               186
+##  3 Adelie             Torgersen           40.3          18                 195
+##  4 Adelie             Torgersen           NA            NA                  NA
+##  5 Adelie             Torgersen           36.7          19.3               193
+##  6 Adelie             Torgersen           39.3          20.6               190
+##  7 Adelie             Torgersen           38.9          17.8               181
+##  8 Adelie             Torgersen           39.2          19.6               195
+##  9 Adelie             Torgersen           34.1          18.1               193
+## 10 Adelie             Torgersen           42            20.2               190
+## # ℹ 334 more rows
+## # ℹ 3 more variables: body_mass_g &lt;int&gt;, sex &lt;fct&gt;, year &lt;int&gt;
+</code></pre>
+</details>
+</blockquote>
+<hr>
+<hr>
+<h1 id="add-or-mutate-columns-with-dplyrmutate">Add or mutate columns with <code>dplyr::mutate()</code></h1>
+<img src="../images/dplyr_mutate.png" style="width:70%;"/>
+<p>Typically, the variables we collect as raw data are not enough for all the questions we want to ask during an analysis. Oftentimes, we want to create new columns based on the values in existing columns (like performing unit conversions or finding ratios). For this we can use <code>dplyr::mutate()</code>.</p>
+<p>For example, we might want the flipper length of penguins in cm instead of mm:</p>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::mutate(flipper_length_cm = flipper_length_mm/10)
+</code></pre>
+<pre><code>## # A tibble: 344 × 9
+##    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##    &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+##  1 Adelie  Torgersen           39.1          18.7               181        3750
+##  2 Adelie  Torgersen           39.5          17.4               186        3800
+##  3 Adelie  Torgersen           40.3          18                 195        3250
+##  4 Adelie  Torgersen           NA            NA                  NA          NA
+##  5 Adelie  Torgersen           36.7          19.3               193        3450
+##  6 Adelie  Torgersen           39.3          20.6               190        3650
+##  7 Adelie  Torgersen           38.9          17.8               181        3625
+##  8 Adelie  Torgersen           39.2          19.6               195        4675
+##  9 Adelie  Torgersen           34.1          18.1               193        3475
+## 10 Adelie  Torgersen           42            20.2               190        4250
+## # ℹ 334 more rows
+## # ℹ 3 more variables: sex &lt;fct&gt;, year &lt;int&gt;, flipper_length_cm &lt;dbl&gt;
+</code></pre>
+<p>Try some examples yourself!</p>
+<blockquote>
+<p><strong>Exercise 8:</strong></p>
+<p>Create a new data frame from the <code>penguins</code> data that meets the following criteria:</p>
+<ul>
+<li>Contains only the <em>species</em> column and a new column called <em>body_mass_kg</em>.</li>
+<li>Only the rows where <em>body_mass_kg</em> is <strong>greater than 4</strong> should be shown in the final data frame.</li>
+</ul>
+<p><em>Hint: think about how the commands should be ordered to produce this data frame.</em></p>
+<details>
+<summary>Click for Answers</summary>
+<pre><code class="language-r">penguins_large &lt;- penguins %&gt;%
+    dplyr::mutate(body_mass_kg = body_mass_g/1000) %&gt;%
+    dplyr::filter(body_mass_kg &gt; 4) %&gt;%
+    dplyr::select(species, body_mass_kg)
+
+penguins_large
+</code></pre>
+<pre><code>## # A tibble: 172 × 2
+##    species body_mass_kg
+##    &lt;fct&gt;          &lt;dbl&gt;
+##  1 Adelie          4.68
+##  2 Adelie          4.25
+##  3 Adelie          4.4 
+##  4 Adelie          4.5 
+##  5 Adelie          4.2 
+##  6 Adelie          4.15
+##  7 Adelie          4.65
+##  8 Adelie          4.4 
+##  9 Adelie          4.6 
+## 10 Adelie          4.15
+## # ℹ 162 more rows
+</code></pre>
+</details>
+</blockquote>
+<hr>
+<hr>
+<h1 id="aggregate-data-with-dplyrgroup_by-and-dplyrsummarize">Aggregate data with <code>dplyr::group_by()</code> and <code>dplyr::summarize()</code></h1>
+<p>Commonly, when reporting analysis results we may want to provide summary statistics. <code>dplyr::group_by()</code> and <code>dplyr::summarize()</code> are functions that work together to give us summary statistics for different groups and put them into a nice table.</p>
+<p><code>group_by()</code> assigns groups within data, and <code>summarize()</code> calculates the summary statistic for the specified group(s).</p>
+<p><strong>Note: Once you summarize, the data <em>not</em> being summarized is <em>excluded</em> from the new data frame</strong></p>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::summarize(body_mass_g_mean = mean(body_mass_g))
+</code></pre>
+<pre><code>## # A tibble: 1 × 1
+##   body_mass_g_mean
+##              &lt;dbl&gt;
+## 1               NA
+</code></pre>
+<p>The output is <code>NA</code>! When <code>R</code> does calculations with missing data, it doesn&rsquo;t know how to evaluate them and forces the result to <code>NA</code>. To solve this, we need to add an argument to <em>mean</em> to tell R to ignore the missing values.</p>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE))
+</code></pre>
+<pre><code>## # A tibble: 1 × 1
+##   body_mass_g_mean
+##              &lt;dbl&gt;
+## 1            4202.
+</code></pre>
+<p>Combining <code>dplyr::summarize()</code> with <code>dplyr::group_by()</code>, we can apply analysis to each group, and then combine and display the results.</p>
+<p><strong>Note: groups do not change the structure of the original data. Grouping only affects how R handles the data in subsequent operations.</strong></p>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::group_by(species) %&gt;%
+    dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE))
+</code></pre>
+<pre><code>## # A tibble: 3 × 2
+##   species   body_mass_g_mean
+##   &lt;fct&gt;                &lt;dbl&gt;
+## 1 Adelie               3701.
+## 2 Chinstrap            3733.
+## 3 Gentoo               5076.
+</code></pre>
+<p>Once the data is grouped, you can summarize multiple variables at the same time. For example, we could add a column indicating the minimum body mass for each species to the above example.</p>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::group_by(species) %&gt;%
+    dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE), body_mass_g_min = min(body_mass_g,
+        na.rm = TRUE))
+</code></pre>
+<pre><code>## # A tibble: 3 × 3
+##   species   body_mass_g_mean body_mass_g_min
+##   &lt;fct&gt;                &lt;dbl&gt;           &lt;int&gt;
+## 1 Adelie               3701.            2850
+## 2 Chinstrap            3733.            2700
+## 3 Gentoo               5076.            3950
+</code></pre>
+<p>One last thing to keep in mind - grouping is maintained in the new data frame. In order to remove the grouping information, <code>dplyr::ungroup()</code> can be used.</p>
+<pre><code>penguins %&gt;%
+  dplyr::group_by(species) %&gt;%
+  dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE),
+                   body_mass_g_min = min(body_mass_g, na.rm = TRUE)) %&gt;%
+  dplyr::ungroup()
+</code></pre>
+<blockquote>
+<p><strong>Exercise 9:</strong></p>
+<p>Calculate the mean, minimum, and maximum <em>flipper_length_mm</em> by <em>species</em> and <em>island</em></p>
+<details>
+<summary>Click for Answers</summary>
+<pre><code class="language-r">penguins %&gt;%
+    dplyr::group_by(species, island) %&gt;%
+    dplyr::summarize(flipper_length_mm_mean = mean(flipper_length_mm, na.rm = TRUE),
+        flipper_length_mm_min = min(flipper_length_mm, na.rm = TRUE), flipper_length_mm_max = max(flipper_length_mm,
+            na.rm = TRUE))
+</code></pre>
+<pre><code>## `summarise()` has grouped output by 'species'. You can override using the
+## `.groups` argument.
+</code></pre>
+<pre><code>## # A tibble: 5 × 5
+## # Groups:   species [3]
+##   species   island    flipper_length_mm_mean flipper_length_mm_min
+##   &lt;fct&gt;     &lt;fct&gt;                      &lt;dbl&gt;                 &lt;int&gt;
+## 1 Adelie    Biscoe                      189.                   172
+## 2 Adelie    Dream                       190.                   178
+## 3 Adelie    Torgersen                   191.                   176
+## 4 Chinstrap Dream                       196.                   178
+## 5 Gentoo    Biscoe                      217.                   203
+## # ℹ 1 more variable: flipper_length_mm_max &lt;int&gt;
+</code></pre>
+</details>
+</blockquote>
+<p>Summarizing data in this way is a useful skill, especially to get a feel for what a data set shows or to break it down into more understandable subsets. Not to mention, manipulating data is especially useful when you want create certain types of plots!</p>
+<hr>
+<p>Some content adapted from: <a href="https://american-stat-412612.netlify.app/material/1-04-lecture/">Data Wrangling with <code>dplyr</code></a> and <a href="https://speciationgenomics.github.io/data_visualisation_handling/">Data manipulation and visualisation in R</a>.</p>
+<p>All artwork by @allison_horst.</p>
+
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev"></span>
+  <span class="nav-next"><a href="/introR/material/day1/">Day 1: R basics</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="//cdn.jsdelivr.net/npm/@xiee/utils/js/math-code.js" defer></script>
+<script src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+
+<script src="//cdn.jsdelivr.net/npm/@xiee/utils/js/center-img.js" defer></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.jsdelivr.net/combine/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js,npm/@xiee/utils/js/load-highlight.js" defer></script>
+
+
+
+  
+  <hr>
+  <div class="copyright">Website built in R.
+Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="https://github.com/rstudio/blogdown">blogdown</a> and <a href="https://github.com/yihui/hugo-ivy">the Ivy theme</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
