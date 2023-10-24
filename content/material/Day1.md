@@ -1,6 +1,6 @@
 ---
 title: "Day 1: R basics"
-date: 2023-10-16
+date: 2023-10-24
 output: 
   html_document:
 editor_options: 
@@ -10,7 +10,7 @@ editor_options:
 
 
 
-## Slides <a href="../slides/Day1.pdf" target="_blank">here</a>
+## Slides <a href="../slides/Day1.pdf" target="_blank">here</a> 
 
 # Basics of R  
   
@@ -220,7 +220,7 @@ body_temp <- 98.6
 > **Exercise 4**
 >  
 > Create two variables, `a` and `b` by assigning the values 60 and 31 to them respectively.
-> Next, divide variable `a` by variable `b` and prodice an output with **three** decimal places.
+> Next, divide variable `a` by variable `b` and produce an output with **three** decimal places.
 > <details>
 > <summary>Click for Answer</summary>
 > 
@@ -343,7 +343,7 @@ As discussed in Session 1, mathematical operations can be applied to vectors. Mo
 
 
 ```r
-x <- c(4, 7, 1, 1)  # 4-placed vector as before
+x <- c(4, 7, 1, 1)  # 4-place vector as before
 x + 1
 ```
 

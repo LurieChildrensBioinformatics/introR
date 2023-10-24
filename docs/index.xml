@@ -7,28 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://luriechildrensbioinformatics.github.io/introR/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Day 3: Data Wrangling</title>
-      <link>https://luriechildrensbioinformatics.github.io/introR/material/day3/</link>
-      <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://luriechildrensbioinformatics.github.io/introR/material/day3/</guid>
-      <description>Slides here Data Wrangling in R On Day 1 we became familiar with R, its syntax and basic coding principles. Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R. However, don&amp;rsquo;t worry if you feel like you haven&amp;rsquo;t understood everything - this is common and perfectly normal! Learning R takes time and practice.
-Today, in Session 1 we discussed what tidy and untidy data are, and why a tidy data structure is useful.</description>
-    </item>
-    
-    <item>
-      <title>Day 2: Case Study - R for Statistics</title>
-      <link>https://luriechildrensbioinformatics.github.io/introR/material/day2/</link>
-      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://luriechildrensbioinformatics.github.io/introR/material/day2/</guid>
-      <description>Slides here </description>
-    </item>
-    
-    <item>
       <title>Day 1: R basics</title>
       <link>https://luriechildrensbioinformatics.github.io/introR/material/day1/</link>
-      <pubDate>Mon, 16 Oct 2023 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 24 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>https://luriechildrensbioinformatics.github.io/introR/material/day1/</guid>
       <description>Slides here Basics of R R is a programming language designed for statistical modelling and data analysis. It is heavily supported by an active community, where new tools for data handling, visualization, and statistical analysis are constantly developed and shared.
@@ -39,7 +20,7 @@ become familiar with R, its syntax and basic principles know how to use R as a c
     <item>
       <title>About the Workshop</title>
       <link>https://luriechildrensbioinformatics.github.io/introR/material/about/</link>
-      <pubDate>Sun, 15 Oct 2023 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 23 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>https://luriechildrensbioinformatics.github.io/introR/material/about/</guid>
       <description>Who is this workshop for?

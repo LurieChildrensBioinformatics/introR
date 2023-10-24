@@ -1,6 +1,6 @@
 ---
 title: "About the Workshop"
-date: 2023-10-15
+date: 2023-10-23
 output: html_document
 editor_options: 
   markdown: 
@@ -9,7 +9,7 @@ editor_options:
 
 
 
-**Who is this workshop for?**
+**Who is this workshop for?** 
 
 -   Researchers with little or no experience with R, or those who have gotten rusty and would like a refresher
 

@@ -27,9 +27,6 @@ menu:
     - name: Resources
       url: /resources/
       weight: 4
-    - name: Repository
-      url: https://github.com/LurieChildrensBioinformatics/introR/
-      weight: 5
     - name: R Installation
       url: /install/
       weight: 6
