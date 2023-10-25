@@ -246,7 +246,7 @@ If all arguments are named, their order does not matter. However, it is good pra
 </code></pre>
 <blockquote>
 <p><strong>Exercise 4</strong></p>
-<p>Create two variables, <code>a</code> and <code>b</code> by assigning the values 60 and 31 to them respectively.
+<p>Create two variables, <code>a</code> and <code>b</code> by assigning the values 60 and 32 to them respectively.
 Next, divide variable <code>a</code> by variable <code>b</code> and produce an output with <strong>three</strong> decimal places.</p>
 <details>
 <summary>Click for Answer</summary>
@@ -472,10 +472,10 @@ Display the column of <em>months</em> from the favorite months data frame.</p>
 <p><img src="https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png" alt=""></p>
 <p>These data contain size measurements for three penguin species observed on three islands in the Palmer Archipelago, Antarctica. The <code>palmerpenguins</code> data were collected by Dr. Kristen Gorman with the Palmer Station Long Term Ecological Research Program from 2007 - 2009.</p>
 <h2 id="load-in-data">Load in data</h2>
-<p><a href="../../penguins.xlsx">Download excel file here</a></p>
+<p><a href="../penguins.xlsx" target="_blank">Download excel file here</a></p>
 <blockquote>
 <p><strong>Exercise 8</strong></p>
-<p>Load in the penguins.xlsx file using the Environments window
+<p>Load in the penguins.xlsx file using the Environments window.
 How would you load this data using code?</p>
 </blockquote>
 <pre><code class="language-r">library(readxl)
@@ -533,8 +533,7 @@ penguins_subset
 <p>Filter <code>penguins_subset</code> to include data only from the <em>year 2009</em></p>
 <details>
 <summary>Click for Answer</summary>
-<pre><code class="language-r">penguins_subset &lt;- penguins_subset[penguins_subset$year == 2009, ]
-penguins_subset
+<pre><code class="language-r">penguins_subset[penguins_subset$year == 2009, ]
 </code></pre>
 <pre><code>## # A tibble: 119 × 5
 ##    species island body_mass_g  year body_mass_kg
@@ -572,8 +571,8 @@ penguins_subset
   <footer>
   
 <nav class="post-nav">
-  <span class="nav-prev">&larr; <a href="/introR/material/day2/">Day 2: Case Study - R for Statistics</a></span>
-  <span class="nav-next"></span>
+  <span class="nav-prev">&larr; <a href="/introR/material/about/">About the Workshop</a></span>
+  <span class="nav-next"><a href="/introR/material/day2/">Day 2: Case Study - R for Statistics</a> &rarr;</span>
 </nav>
 
 

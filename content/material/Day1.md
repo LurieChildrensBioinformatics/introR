@@ -219,7 +219,7 @@ body_temp <- 98.6
 
 > **Exercise 4**
 >  
-> Create two variables, `a` and `b` by assigning the values 60 and 31 to them respectively.
+> Create two variables, `a` and `b` by assigning the values 60 and 32 to them respectively.
 > Next, divide variable `a` by variable `b` and produce an output with **three** decimal places.
 > <details>
 > <summary>Click for Answer</summary>
@@ -578,11 +578,11 @@ These data contain size measurements for three penguin species observed on three
 
 ## Load in data
 
-<a href="../../penguins.xlsx">Download excel file here</a>
+<a href="../penguins.xlsx" target="_blank">Download excel file here</a>
 
 > **Exercise 8**
 >    
-> Load in the penguins.xlsx file using the Environments window
+> Load in the penguins.xlsx file using the Environments window.
 > How would you load this data using code?
 >  
 
@@ -665,8 +665,7 @@ We will focus on a curated subset of the raw data. This subset contains 8 variab
 > <summary>Click for Answer</summary>
 > 
 > ```r
-> penguins_subset <- penguins_subset[penguins_subset$year == 2009, ]
-> penguins_subset
+> penguins_subset[penguins_subset$year == 2009, ]
 > ```
 > 
 > ```

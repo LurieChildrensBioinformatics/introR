@@ -1,7 +1,7 @@
 ---
 title: "Day 2: Case Study - R for Statistics"
 author: "Stella Karuri"
-date: 2023-10-24
+date: 2023-10-25
 output: 
   html_document:
 editor_options: 
