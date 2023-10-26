@@ -152,7 +152,7 @@ To avoid this, we can also plot each observation as a point on top of the boxplo
 This is as simple as adding **geom_point()** at the end with a **+**:
 
 ```
-ggplot(penguins) +
+ggplot2::ggplot(penguins) +
   aes(x = sex, y = body_mass_g) +
   geom_boxplot() +
   geom_point()
@@ -193,7 +193,7 @@ The final thing I want to share is adding axes labels and titles to a plot.
 For this we use the function **labs**.
 
 ```
-ggplot(penguins) +
+ggplot2::ggplot(penguins) +
   aes(x = sex, y = body_mass_g) +
   geom_boxplot() +
   geom_jitter(width = 0.2) +
@@ -209,7 +209,7 @@ You can play around with what you want to plot in **x** and **y**, as well as ae
 *alpha just makes objects more transparent. The smaller the alpha the more transparent the object*
 
 ```
-ggplot(penguins) +
+ggplot2::ggplot(penguins) +
   aes(x = sex, y = body_mass_g) +
   geom_boxplot(size = 0.5) +
   geom_jitter(width = 0.2, alpha = 0.5, aes(color = island)) +

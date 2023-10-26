@@ -142,7 +142,7 @@ head(penguins)
 </code></pre>
 <p>The first element in data visualization is your data.
 Lets tell R that we want to plot the data help in the variable <strong>penguins</strong>.</p>
-<pre><code>ggplot(penguins)
+<pre><code>ggplot2::ggplot(penguins)
 </code></pre>
 <p>I will not actually execute this block, but give it a try yourself.
 Notice that nothing was added to our blank plot!
@@ -153,8 +153,7 @@ Let&rsquo;s explore the relationship between <em>bill length</em> (x-axis) and <
 <blockquote>
 <p>Note: To build layers with ggplot, we use the <code>+</code></p>
 </blockquote>
-<pre><code>ggplot(penguins) + aes(x = bill_length_mm, y = bill_depth_mm)
-
+<pre><code>ggplot2::ggplot(penguins) + aes(x = bill_length_mm, y = bill_depth_mm)
 </code></pre>
 <img src="../Bonus_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 <p>Notice we now have axes labels!
@@ -164,7 +163,7 @@ But nothing has shown up in the actual bounds of our plot because we are still m
 <strong>Geometric objects</strong> define the type of plot we want to make.
 Let&rsquo;s try plotting simple points.
 We will use <strong>geom_point()</strong>.</p>
-<pre><code>ggplot(penguins) + aes(x = bill_length_mm, y = bill_depth_mm) + geom_point()
+<pre><code>ggplot2::ggplot(penguins) + aes(x = bill_length_mm, y = bill_depth_mm) + geom_point()
 </code></pre>
 <img src="../Bonus_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 <p>And now we can see our data!</p>
@@ -232,7 +231,7 @@ Here are a few key types:</p>
 <p>Now that we have the basics, we can play around with aesthetics and other geometric objects.
 Let&rsquo;s start by adding to the aesthetics.
 Say we were interested in observing the relationship between <em>bill length</em> (x-axis) and <em>bill depth</em> (y-axis) <strong>by island</strong>.</p>
-<pre><code>ggplot(penguins) +
+<pre><code>ggplot2::ggplot(penguins) +
   aes(x = bill_length_mm, y = bill_depth_mm, color = island) +
   geom_point()
 </code></pre>
@@ -247,7 +246,7 @@ Give it a try.</p>
 <p>Not only can we change the aesthetics but we can also change the geometric objects we are plotting.
 Let&rsquo;s explore our data using boxplots instead&hellip;</p>
 <p>Say we are interested in exploring how body mass differed across sex.</p>
-<pre><code>ggplot(penguins) +
+<pre><code>ggplot2::ggplot(penguins) +
   aes(x = sex, y = body_mass_g) +
   geom_boxplot()
 </code></pre>
@@ -255,7 +254,7 @@ Let&rsquo;s explore our data using boxplots instead&hellip;</p>
 <p>Although boxplots are great, they do hide the underlying data.
 To avoid this, we can also plot each observation as a point on top of the boxplots.
 This is as simple as adding <strong>geom_point()</strong> at the end with a <strong>+</strong>:</p>
-<pre><code>ggplot(penguins) +
+<pre><code>ggplot2::ggplot(penguins) +
   aes(x = sex, y = body_mass_g) +
   geom_boxplot() +
   geom_point()
@@ -284,7 +283,7 @@ As a personal preference I like having points in front of boxplots &ndash; this 
 <h1 id="adding-plot-labels">Adding plot labels</h1>
 <p>The final thing I want to share is adding axes labels and titles to a plot.
 For this we use the function <strong>labs</strong>.</p>
-<pre><code>ggplot(penguins) +
+<pre><code>ggplot2::ggplot(penguins) +
   aes(x = sex, y = body_mass_g) +
   geom_boxplot() +
   geom_jitter(width = 0.2) +
@@ -294,7 +293,7 @@ For this we use the function <strong>labs</strong>.</p>
 <p>And that is really about it.
 You can play around with what you want to plot in <strong>x</strong> and <strong>y</strong>, as well as aesthetics like size and color.\</p>
 <p><em>alpha just makes objects more transparent. The smaller the alpha the more transparent the object</em></p>
-<pre><code>ggplot(penguins) +
+<pre><code>ggplot2::ggplot(penguins) +
   aes(x = sex, y = body_mass_g) +
   geom_boxplot(size = 0.5) +
   geom_jitter(width = 0.2, alpha = 0.5, aes(color = island)) +
@@ -311,7 +310,9 @@ penguins %&gt;%
   aes(x = island, y = avg_body_mass, fill = island) +
   geom_col() +
   theme_classic() +
-  labs(x = &quot;Island&quot;, y = &quot;Average body mass (kg)&quot;, title = &quot;Average penguin body pass across islands&quot;)
+  labs(x = &quot;Island&quot;, 
+       y = &quot;Average body mass (kg)&quot;, 
+       title = &quot;Average penguin body pass across islands&quot;)
 </code></pre>
 <img src="../Bonus_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
