@@ -7,6 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://luriechildrensbioinformatics.github.io/introR/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Day 3: Data Wrangling</title>
+      <link>https://luriechildrensbioinformatics.github.io/introR/material/day3/</link>
+      <pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://luriechildrensbioinformatics.github.io/introR/material/day3/</guid>
+      <description>Slides here Data Wrangling in R On Day 1 we became familiar with R, its syntax and basic coding principles. Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R. However, don&amp;rsquo;t worry if you feel like you haven&amp;rsquo;t understood everything - this is common and perfectly normal! Learning R takes time and practice.
+Today, in Session 1 we discussed what tidy and untidy data are, and why a tidy data structure is useful.</description>
+    </item>
+    
+    <item>
       <title>Day 2: Case Study - R for Statistics</title>
       <link>https://luriechildrensbioinformatics.github.io/introR/material/day2/</link>
       <pubDate>Wed, 25 Oct 2023 00:00:00 +0000</pubDate>
@@ -48,9 +58,10 @@ Stella &amp;ndash; a statistician with experience using S-plus (predecessor to R
       <guid>https://luriechildrensbioinformatics.github.io/introR/resources/</guid>
       <description>Interactive lessons
 Posit Cloud A non-programmer friendly introduction to the R language:
-Hands-On Programming with R Swirl: learn R interactively
-tidyverse suite of packages
-Packages homepage An intermediate-level exploration of data analysis using R&amp;rsquo;s tidyverse packages:
+Hands-On Programming with R R for excel users gitbook
+Swirl: learn R interactively
+tidyverse package cheatsheets
+An intermediate-level exploration of data analysis using R&amp;rsquo;s tidyverse packages:
 R for Data Science
 R for Data Science: Exercise Solutions</description>
     </item>

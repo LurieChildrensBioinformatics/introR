@@ -22,8 +22,9 @@ However, don't worry if you feel like you haven't understood everything - this i
 Today, in Session 1 we discussed what tidy and untidy data are, and why a tidy data structure is useful. This process of taking data from an untidy format to a tidy format is often referred to as **data wrangling**. Next we discussed the `{tidyverse}` - a collection of packages for data science in R.
 Using the powerful `{tidyverse}` allows us to "level-up" our approach to data wrangling.
 
-> **The learning goal for today's session is:**
+> **The learning goals for today's session are:**
 >
+> -   know how to import and export data using `{readr}` and `{readxl}`
 > -   understand methods of handling and manipulating data with `{dplyr}`
 
 ## Getting started with the `{tidyverse}`
@@ -60,10 +61,38 @@ library(tidyverse)
 # execute this command first.
 ```
 
+## `{readr}` and `{readxl}`
+
+`{readr}` and `{readxl}` are helpful when importing and exporting data. We can use the `{readr}` package to handle csv or tsv files. It would look something like this:
+
+```
+library(readr)
+sample_csv_data <- read_csv("sample_csv.csv")
+
+write_csv(x = sample_csv_data, file = "sample_data_saved.csv")
+```
+
+Notice in the above example, we are performing two actions, data import and data export. We can use the `read_csv` function to read in a file that exists somewhere on our computer. After performing any necessary analysis, we can then export our data back to a csv file using the `write_csv` function. `write_csv` has a few possible arguments but here we are using two: "x" and "file". The "x" argument details the data frame that we want to save. The "file" argument details what we want to name our new file.  
+  
+Similarly, we can use `{readxl}` to handle reading excel documents:  
+
+```
+library(readxl)
+sample_excel_data <- read_excel("sample_excel.xlsx")
+```
+
+Unlike our first example, the `{readxl}` package cannot **write** an excel document to your computer. This may not be a problem since Excel is able to read and open csv and tsv files easily. However, if you want to write data to Excel files you can use the [`{openxlsx}` package](https://ycphs.github.io/openxlsx/). Usage would look like this:
+
+```
+library(openxlsx)
+write.xlsx(x = sample_excel_data, file = "sample_data_saved.xlsx")
+
+```
+
 ## The `{dplyr}` package
 
 As we discussed in Session 1, the `{dplyr}` package is part of the `{tidyverse}`.
-It is installed and loaded with the `{tidyverse}` package (but can actually be installed/loaded on its own as well). `dplyr` is designed to help users to manipulate or transform data. Think of the `{dplyr}` functions as **verbs** that act on data.   
+It is installed and loaded with the `{tidyverse}` package (but can actually be installed/loaded on its own as well). `{dplyr}` is designed to help users manipulate or transform data. Think of the `{dplyr}` functions as **verbs** that act on data.   
   
 The RStudio community provides a handy reference guide for the use of `{dplyr}` functions.
 Check it out [here](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
@@ -141,7 +170,7 @@ It looks like there are 8 variables or columns that we have to work with.
 
 # The Pipe Operator
 
-Before we get into the main functions within `{dplyr}`, it is useful to discuss what is known as the **pipe operator**. The pipe operator looks like this in R `%>%`. When you see the pipe `%>%` think of it as the word 'then'. The pipe tells you to do one thing and *then* do another, pushing data from left to right.  
+Before we get into the main functions within `{dplyr}`, it is useful to discuss what is known as the **pipe operator**. The pipe operator looks like this in R `%>%`. When you see the pipe `%>%` think of it as the word 'then'. The pipe tells you to do one thing and *then* do another, pushing data from left to right. The pipe operator gets loaded in when we load the `{dplyr}`package.     
 
 Generally, the pipe operator allows you to string a number of different functions together in a particular order. For example, if you wanted to take data frame A and carry out function B on it, you could depict this with an arrow pointing from A to B:
 
@@ -409,7 +438,7 @@ If you remember, we accomplished this in base R with the following:
 ```
 penguins[penguins$species == "Chinstrap", ]
 
-#Note that we need a `==` instead of a `=`
+# Note that we need a `==` instead of a `=`
 # = assignment, == evaluation 
 ```
 
@@ -442,7 +471,7 @@ penguins[penguins$species == "Chinstrap", ]
 > ## # ℹ 2 more variables: sex <fct>, year <int>
 > ```
 > </details>
-
+  
 ## Multiple conditions
 
 Where the `filter` function really becomes useful is when there are several criteria of interest. This is easily achieved using the logical operators detailed above. 
@@ -456,7 +485,7 @@ Here is a graphical depiction of these operations. Blue is TRUE (to be included)
 <img src="../images/graphical_operators.png" style="width:65%;"/>
 
 
-The And operator is the most commonly used. So, if you just separate the logical conditions by a comma, `dplyr::filter()` will **perform the *And* operation by default**.
+The *&* operator is the most commonly used. So, if you just separate the logical conditions by a comma, `dplyr::filter()` will **perform the *&* operation by default**.
 
 > **Exercise 5:**
 > Use `dplyr::filter()` to...
@@ -642,7 +671,7 @@ Exercise 6 is an example of the power of piping. The `dplyr` functions by themse
 -------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------
 
-# Rename
+# Rename columns using `dplyr::rename`
 
 <img src="../images/dplyr_rename.png" style="width:70%;"/>
 
@@ -770,11 +799,11 @@ Try some examples yourself!
 
 > **Exercise 8:**
 > 
-> Create a new data frame from the `penguins` data that meets the following criteria:
+> Create a new data frame called `penguins_large` from the `penguins` data that meets the following criteria:
 > -   Contains only the *species* column and a new column called *body_mass_kg*. 
-> -   Only the rows where *body_mass_kg* is **greater than 4** should be shown in the final data frame. 
+> -   Only rows where *body_mass_kg* is **greater than 4** should be shown in the final data frame. 
 > 
-> *Hint: think about how the commands should be ordered to produce this data frame.*
+> *Hint: think about how the commands should be ordered to produce this data frame. What step should you perform first?*
 >   
 > <details>
 > <summary>Click for Answers</summary>
@@ -830,7 +859,7 @@ penguins %>%
 ## 1               NA
 ```
 
-The output is `NA`! When `R` does calculations with missing data, it doesn't know how to evaluate them and forces the result to `NA`. To solve this, we need to add an argument to *mean* to tell R to ignore the missing values.
+The output is `NA`! When `R` does calculations with missing data, it doesn't know how to evaluate them and forces the result to `NA`. To solve this, we need to add an **argument** to *mean* to tell R to ignore the missing values.
 
 
 ```r
@@ -845,7 +874,7 @@ penguins %>%
 ## 1            4202.
 ```
 
-Combining `dplyr::summarize()` with `dplyr::group_by()`, we can apply analysis to each group, and then combine and display the results. 
+By combining `dplyr::summarize()` with `dplyr::group_by()`, we can apply our analysis to each group. 
 
 **Note: groups do not change the structure of the original data. Grouping only affects how R handles the data in subsequent operations.**
 
@@ -864,7 +893,8 @@ penguins %>%
 ## 2 Chinstrap            3733.
 ## 3 Gentoo               5076.
 ```
-Once the data is grouped, you can summarize multiple variables at the same time. For example, we could add a column indicating the minimum body mass for each species to the above example.
+
+Once the data is grouped, you can summarize multiple variables at the same time. For example, we could add a column indicating the *minimum body mass* for each species to the above example.  
 
 
 ```r
@@ -883,7 +913,7 @@ penguins %>%
 ## 3 Gentoo               5076.            3950
 ```
 
-One last thing to keep in mind - grouping is maintained in the new data frame. In order to remove the grouping information, `dplyr::ungroup()` can be used.
+One last thing to keep in mind - grouping is maintained in the new data frame. In order to remove the grouping information, `dplyr::ungroup()` can be used.  
 
 ```
 penguins %>%
@@ -930,7 +960,10 @@ penguins %>%
 
 Summarizing data in this way is a useful skill, especially to get a feel for what a data set shows or to break it down into more understandable subsets. Not to mention, manipulating data is especially useful when you want create certain types of plots!
 
+-------------
 
+## Please complete [this short survey](https://forms.office.com/Pages/ResponsePage.aspx?id=dHTylW-cBkSB3BxV9bP5ygoAquQN9TtBhHPb1mJ30rVUMjM3ODRHVDQyWFVXSU9LRTgxNDdVS09RVy4u) to provide feedback about the workshop!
+ 
 -------------
 Some content adapted from: [Data Wrangling with `dplyr`](https://american-stat-412612.netlify.app/material/1-04-lecture/) and [Data manipulation and visualisation in R](https://speciationgenomics.github.io/data_visualisation_handling/).
 

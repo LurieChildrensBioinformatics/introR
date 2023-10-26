@@ -10,13 +10,13 @@ title: "Additional Resources"
 
     -   [Hands-On Programming with R](https://rstudio-education.github.io/hopr/index.html)
 
-3.  [Swirl](https://swirlstats.com/): learn R interactively
+3.  R for excel users [gitbook](https://rstudio-conf-2020.github.io/r-for-excel/)
 
-4.  `tidyverse` suite of packages
+4.  [Swirl](https://swirlstats.com/): learn R interactively
 
-    -   [Packages homepage](https://www.tidyverse.org/packages/#wrangle)
+5.  `tidyverse` package [cheatsheets](https://posit.co/resources/cheatsheets/)
 
-5.  An intermediate-level exploration of data analysis using R's `tidyverse` packages:
+6.  An intermediate-level exploration of data analysis using R's `tidyverse` packages:
 
     -   [R for Data Science](https://r4ds.had.co.nz/index.html)
 

@@ -6,7 +6,17 @@
     <description>Recent content in Materials on Intro to R</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://luriechildrensbioinformatics.github.io/introR/material/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 26 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://luriechildrensbioinformatics.github.io/introR/material/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Day 3: Data Wrangling</title>
+      <link>https://luriechildrensbioinformatics.github.io/introR/material/day3/</link>
+      <pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://luriechildrensbioinformatics.github.io/introR/material/day3/</guid>
+      <description>Slides here Data Wrangling in R On Day 1 we became familiar with R, its syntax and basic coding principles. Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R. However, don&amp;rsquo;t worry if you feel like you haven&amp;rsquo;t understood everything - this is common and perfectly normal! Learning R takes time and practice.
+Today, in Session 1 we discussed what tidy and untidy data are, and why a tidy data structure is useful.</description>
+    </item>
+    
     <item>
       <title>Day 2: Case Study - R for Statistics</title>
       <link>https://luriechildrensbioinformatics.github.io/introR/material/day2/</link>

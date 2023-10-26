@@ -89,7 +89,7 @@ Joy Nyaanga
 
 
  / 
-2023-10-18
+2023-10-26
 </h3>
 
 <hr>
@@ -101,7 +101,7 @@ Joy Nyaanga
 
 
 
-<h2 id="slides-a-hrefslidesday3pdf-target_blankas-pdfa-or-a-hrefslidesday3pptx-target_blankas-ppta">Slides <a href="../slides/Day3.pdf" target="_blank">as pdf</a> or <a href="../slides/Day3.pptx" target="_blank">as ppt</a></h2>
+<h2 id="slides-a-hrefslidesday3pdf-target_blankherea">Slides <a href="../slides/Day3.pdf" target="_blank">here</a></h2>
 <h1 id="data-wrangling-in-r">Data Wrangling in R</h1>
 <p>On Day 1 we became familiar with R, its syntax and basic coding principles.
 Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R.
@@ -109,8 +109,9 @@ However, don&rsquo;t worry if you feel like you haven&rsquo;t understood everyth
 <p>Today, in Session 1 we discussed what tidy and untidy data are, and why a tidy data structure is useful. This process of taking data from an untidy format to a tidy format is often referred to as <strong>data wrangling</strong>. Next we discussed the <code>{tidyverse}</code> - a collection of packages for data science in R.
 Using the powerful <code>{tidyverse}</code> allows us to &ldquo;level-up&rdquo; our approach to data wrangling.</p>
 <blockquote>
-<p><strong>The learning goal for today&rsquo;s session is:</strong></p>
+<p><strong>The learning goals for today&rsquo;s session are:</strong></p>
 <ul>
+<li>know how to import and export data using <code>{readr}</code> and <code>{readxl}</code></li>
 <li>understand methods of handling and manipulating data with <code>{dplyr}</code></li>
 </ul>
 </blockquote>
@@ -136,9 +137,26 @@ library(tidyverse)
 <pre><code class="language-r"># if you are unsure whether you already have tidyverse installed. Simply
 # execute this command first.
 </code></pre>
+<h2 id="readr-and-readxl"><code>{readr}</code> and <code>{readxl}</code></h2>
+<p><code>{readr}</code> and <code>{readxl}</code> are helpful when importing and exporting data. We can use the <code>{readr}</code> package to handle csv or tsv files. It would look something like this:</p>
+<pre><code>library(readr)
+sample_csv_data &lt;- read_csv(&quot;sample_csv.csv&quot;)
+
+write_csv(x = sample_csv_data, file = &quot;sample_data_saved.csv&quot;)
+</code></pre>
+<p>Notice in the above example, we are performing two actions, data import and data export. We can use the <code>read_csv</code> function to read in a file that exists somewhere on our computer. After performing any necessary analysis, we can then export our data back to a csv file using the <code>write_csv</code> function. <code>write_csv</code> has a few possible arguments but here we are using two: &ldquo;x&rdquo; and &ldquo;file&rdquo;. The &ldquo;x&rdquo; argument details the data frame that we want to save. The &ldquo;file&rdquo; argument details what we want to name our new file.</p>
+<p>Similarly, we can use <code>{readxl}</code> to handle reading excel documents:</p>
+<pre><code>library(readxl)
+sample_excel_data &lt;- read_excel(&quot;sample_excel.xlsx&quot;)
+</code></pre>
+<p>Unlike our first example, the <code>{readxl}</code> package cannot <strong>write</strong> an excel document to your computer. This may not be a problem since Excel is able to read and open csv and tsv files easily. However, if you want to write data to Excel files you can use the <a href="https://ycphs.github.io/openxlsx/"><code>{openxlsx}</code> package</a>. Usage would look like this:</p>
+<pre><code>library(openxlsx)
+write.xlsx(x = sample_excel_data, file = &quot;sample_data_saved.xlsx&quot;)
+
+</code></pre>
 <h2 id="the-dplyr-package">The <code>{dplyr}</code> package</h2>
 <p>As we discussed in Session 1, the <code>{dplyr}</code> package is part of the <code>{tidyverse}</code>.
-It is installed and loaded with the <code>{tidyverse}</code> package (but can actually be installed/loaded on its own as well). <code>dplyr</code> is designed to help users to manipulate or transform data. Think of the <code>{dplyr}</code> functions as <strong>verbs</strong> that act on data.</p>
+It is installed and loaded with the <code>{tidyverse}</code> package (but can actually be installed/loaded on its own as well). <code>{dplyr}</code> is designed to help users manipulate or transform data. Think of the <code>{dplyr}</code> functions as <strong>verbs</strong> that act on data.</p>
 <p>The RStudio community provides a handy reference guide for the use of <code>{dplyr}</code> functions.
 Check it out <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">here</a>.</p>
 <p>In Session 1 we covered a subset of the <code>{dplyr}</code> functions. Generally, these functions can be characterized by the component of the data they work with:</p>
@@ -201,7 +219,7 @@ We can &hellip;</p>
 <hr>
 <hr>
 <h1 id="the-pipe-operator">The Pipe Operator</h1>
-<p>Before we get into the main functions within <code>{dplyr}</code>, it is useful to discuss what is known as the <strong>pipe operator</strong>. The pipe operator looks like this in R <code>%&gt;%</code>. When you see the pipe <code>%&gt;%</code> think of it as the word &rsquo;then&rsquo;. The pipe tells you to do one thing and <em>then</em> do another, pushing data from left to right.</p>
+<p>Before we get into the main functions within <code>{dplyr}</code>, it is useful to discuss what is known as the <strong>pipe operator</strong>. The pipe operator looks like this in R <code>%&gt;%</code>. When you see the pipe <code>%&gt;%</code> think of it as the word &rsquo;then&rsquo;. The pipe tells you to do one thing and <em>then</em> do another, pushing data from left to right. The pipe operator gets loaded in when we load the <code>{dplyr}</code>package.</p>
 <p>Generally, the pipe operator allows you to string a number of different functions together in a particular order. For example, if you wanted to take data frame A and carry out function B on it, you could depict this with an arrow pointing from A to B:</p>
 <p>A -&gt; B</p>
 <p>If we didn&rsquo;t use pipes, this would look like the following in base R:</p>
@@ -402,7 +420,7 @@ penguins %&gt;%
 <p>If you remember, we accomplished this in base R with the following:</p>
 <pre><code>penguins[penguins$species == &quot;Chinstrap&quot;, ]
 
-#Note that we need a `==` instead of a `=`
+# Note that we need a `==` instead of a `=`
 # = assignment, == evaluation 
 </code></pre>
 <blockquote>
@@ -437,7 +455,7 @@ Use <code>dplyr::filter()</code> to keep only rows where <em>species</em> is Chi
 <img src="../images/boolean_operators.png" style="width:35%;"/>
 <p>Here is a graphical depiction of these operations. Blue is TRUE (to be included) and White is FALSE (not included).</p>
 <img src="../images/graphical_operators.png" style="width:65%;"/>
-<p>The And operator is the most commonly used. So, if you just separate the logical conditions by a comma, <code>dplyr::filter()</code> will <strong>perform the <em>And</em> operation by default</strong>.</p>
+<p>The <em>&amp;</em> operator is the most commonly used. So, if you just separate the logical conditions by a comma, <code>dplyr::filter()</code> will <strong>perform the <em>&amp;</em> operation by default</strong>.</p>
 <blockquote>
 <p><strong>Exercise 5:</strong>
 Use <code>dplyr::filter()</code> to&hellip;</p>
@@ -585,7 +603,7 @@ Then display only the <em>island</em> column and those relating to their bill.</
 <p>Exercise 6 is an example of the power of piping. The <code>dplyr</code> functions by themselves are somewhat simple, but by combining them into linear workflows with the pipe, we can accomplish more complex manipulations of data frames.</p>
 <hr>
 <hr>
-<h1 id="rename">Rename</h1>
+<h1 id="rename-columns-using-dplyrrename">Rename columns using <code>dplyr::rename</code></h1>
 <img src="../images/dplyr_rename.png" style="width:70%;"/>
 <p>As the function name implies, you can use <code>dplyr::rename()</code> to <strong>rename</strong> columns using the syntax <code>new_name</code> = <code>current_name</code></p>
 <pre><code class="language-r">penguins %&gt;%
@@ -681,12 +699,12 @@ Then display only the <em>island</em> column and those relating to their bill.</
 <p>Try some examples yourself!</p>
 <blockquote>
 <p><strong>Exercise 8:</strong></p>
-<p>Create a new data frame from the <code>penguins</code> data that meets the following criteria:</p>
+<p>Create a new data frame called <code>penguins_large</code> from the <code>penguins</code> data that meets the following criteria:</p>
 <ul>
 <li>Contains only the <em>species</em> column and a new column called <em>body_mass_kg</em>.</li>
-<li>Only the rows where <em>body_mass_kg</em> is <strong>greater than 4</strong> should be shown in the final data frame.</li>
+<li>Only rows where <em>body_mass_kg</em> is <strong>greater than 4</strong> should be shown in the final data frame.</li>
 </ul>
-<p><em>Hint: think about how the commands should be ordered to produce this data frame.</em></p>
+<p><em>Hint: think about how the commands should be ordered to produce this data frame. What step should you perform first?</em></p>
 <details>
 <summary>Click for Answers</summary>
 <pre><code class="language-r">penguins_large &lt;- penguins %&gt;%
@@ -727,7 +745,7 @@ penguins_large
 ##              &lt;dbl&gt;
 ## 1               NA
 </code></pre>
-<p>The output is <code>NA</code>! When <code>R</code> does calculations with missing data, it doesn&rsquo;t know how to evaluate them and forces the result to <code>NA</code>. To solve this, we need to add an argument to <em>mean</em> to tell R to ignore the missing values.</p>
+<p>The output is <code>NA</code>! When <code>R</code> does calculations with missing data, it doesn&rsquo;t know how to evaluate them and forces the result to <code>NA</code>. To solve this, we need to add an <strong>argument</strong> to <em>mean</em> to tell R to ignore the missing values.</p>
 <pre><code class="language-r">penguins %&gt;%
     dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE))
 </code></pre>
@@ -736,7 +754,7 @@ penguins_large
 ##              &lt;dbl&gt;
 ## 1            4202.
 </code></pre>
-<p>Combining <code>dplyr::summarize()</code> with <code>dplyr::group_by()</code>, we can apply analysis to each group, and then combine and display the results.</p>
+<p>By combining <code>dplyr::summarize()</code> with <code>dplyr::group_by()</code>, we can apply our analysis to each group.</p>
 <p><strong>Note: groups do not change the structure of the original data. Grouping only affects how R handles the data in subsequent operations.</strong></p>
 <pre><code class="language-r">penguins %&gt;%
     dplyr::group_by(species) %&gt;%
@@ -749,7 +767,7 @@ penguins_large
 ## 2 Chinstrap            3733.
 ## 3 Gentoo               5076.
 </code></pre>
-<p>Once the data is grouped, you can summarize multiple variables at the same time. For example, we could add a column indicating the minimum body mass for each species to the above example.</p>
+<p>Once the data is grouped, you can summarize multiple variables at the same time. For example, we could add a column indicating the <em>minimum body mass</em> for each species to the above example.</p>
 <pre><code class="language-r">penguins %&gt;%
     dplyr::group_by(species) %&gt;%
     dplyr::summarize(body_mass_g_mean = mean(body_mass_g, na.rm = TRUE), body_mass_g_min = min(body_mass_g,
@@ -798,6 +816,8 @@ penguins_large
 </blockquote>
 <p>Summarizing data in this way is a useful skill, especially to get a feel for what a data set shows or to break it down into more understandable subsets. Not to mention, manipulating data is especially useful when you want create certain types of plots!</p>
 <hr>
+<h2 id="please-complete-this-short-surveyhttpsformsofficecompagesresponsepageaspxiddhtylw-cbksb3bxv9bp5ygoaquqn9ttbhhpb1mj30rvumjm3odrhvdqywfvxsu9lrtgxnddvs09rvy4u-to-provide-feedback-about-the-workshop">Please complete <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=dHTylW-cBkSB3BxV9bP5ygoAquQN9TtBhHPb1mJ30rVUMjM3ODRHVDQyWFVXSU9LRTgxNDdVS09RVy4u">this short survey</a> to provide feedback about the workshop!</h2>
+<hr>
 <p>Some content adapted from: <a href="https://american-stat-412612.netlify.app/material/1-04-lecture/">Data Wrangling with <code>dplyr</code></a> and <a href="https://speciationgenomics.github.io/data_visualisation_handling/">Data manipulation and visualisation in R</a>.</p>
 <p>All artwork by @allison_horst.</p>
 
@@ -806,8 +826,8 @@ penguins_large
   <footer>
   
 <nav class="post-nav">
-  <span class="nav-prev">&larr; <a href="/introR/material/about/">About the Workshop</a></span>
-  <span class="nav-next"><a href="/introR/material/day1/">Day 1: R basics</a> &rarr;</span>
+  <span class="nav-prev">&larr; <a href="/introR/material/day2/">Day 2: Case Study - R for Statistics</a></span>
+  <span class="nav-next"></span>
 </nav>
 
 
