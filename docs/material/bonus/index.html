@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Bonus: A short intro to ggplot2 - Intro to R</title>
+    <meta property="og:title" content="Bonus: A short intro to ggplot2 - Intro to R">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+    
+      
+    
+
+    
+      
+      <meta property="description" content="On day 3 we spent time discussing the {tidyverse} - a collection of R packages that share a common design philosophy, grammar, and structure. {ggplot2} is a powerful package within the tidyverse for &amp;hellip;">
+      <meta property="og:description" content="On day 3 we spent time discussing the {tidyverse} - a collection of R packages that share a common design philosophy, grammar, and structure. {ggplot2} is a powerful package within the tidyverse for &amp;hellip;">
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css">
+
+
+
+    <link rel="stylesheet" href="/introR/css/style.css" />
+    <link rel="stylesheet" href="/introR/css/fonts.css" />
+    <link rel="stylesheet" href="/introR/css/custom.css" />
+
+  </head>
+  <body class="introR">
+    <header class="masthead">
+      <h1><a href="/introR/">Intro to R</a></h1>
+
+<p class="tagline">Fall 2023 Intro to R workshop.</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" hidden/>
+  <label id="menu-label" for="menu-check" class="unselectable" hidden>
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/introR/">Home</a></li>
+  
+  <li><a href="/introR/syllabus.pdf">Workshop details</a></li>
+  
+  <li><a href="/introR/material/">Material</a></li>
+  
+  <li><a href="/introR/resources/">Resources</a></li>
+  
+  <li><a href="/introR/install/">R Installation</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+<h1>Bonus: A short intro to ggplot2</h1>
+
+
+
+<h3>
+
+Joy Nyaanga
+
+
+
+
+
+
+ / 
+2023-10-26
+</h3>
+
+<hr>
+
+
+      </header>
+
+
+
+
+
+<p>On day 3 we spent time discussing the <code>{tidyverse}</code> - a collection of R packages that share a common design philosophy, grammar, and structure.
+<a href="https://ggplot2.tidyverse.org/"><code>{ggplot2}</code></a> is a powerful package within the tidyverse for producing elegant graphics piece by piece.</p>
+<blockquote>
+<p>The <strong>gg</strong> in ggplot2 means <em>Grammar of Graphics</em>, a graphic concept which describes plots by using a &ldquo;grammar&rdquo;.
+Similar to how sentences are composed of various parts of speech (e.g., nouns, verbs, adjectives), <code>{ggplot2}</code> allows us to create figures using a standard syntax.</p>
+</blockquote>
+<p>According to this concept, a plot can be divided into fundamental parts, mainly: <strong>Plot = data + aesthetics + geometry</strong>.
+We will take a look at each of these parts and see how together they build a plot.</p>
+<h1 id="designating-data">Designating data</h1>
+<p>Like any R package, in order to use <code>{ggplot2}</code> functions, we must first load the library.</p>
+<pre><code class="language-r">library(ggplot2)
+</code></pre>
+<pre><code>## Warning: package 'ggplot2' was built under R version 4.2.3
+</code></pre>
+<p>Now we can begin to use functions within the <code>{ggplot2}</code> package.
+Step one is to tell R to set up a plot.
+We do this by calling <em><code>ggplot2::ggplot()</code></em>.
+This will open up a blank plot to the right of your RStudio session under the Plots tab.</p>
+<pre><code>ggplot2::ggplot()
+</code></pre>
+<img src="../Bonus_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<blockquote>
+<p>Notice that the <strong>function</strong> we use to create a plot is <em>ggplot</em> whereas the package is called <code>ggplot2</code></p>
+</blockquote>
+<p>Now that we have the framework for a plot set, we can specify which data set we are interested in visualizing.
+Let&rsquo;s use the <code>palmerpenguins</code> data set once more.</p>
+<pre><code class="language-r">library(palmerpenguins)
+</code></pre>
+<pre><code>## Warning: package 'palmerpenguins' was built under R version 4.2.3
+</code></pre>
+<pre><code class="language-r">penguins &lt;- palmerpenguins::penguins
+head(penguins)
+</code></pre>
+<pre><code>## # A tibble: 6 × 8
+##   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+##   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
+## 1 Adelie  Torgersen           39.1          18.7               181        3750
+## 2 Adelie  Torgersen           39.5          17.4               186        3800
+## 3 Adelie  Torgersen           40.3          18                 195        3250
+## 4 Adelie  Torgersen           NA            NA                  NA          NA
+## 5 Adelie  Torgersen           36.7          19.3               193        3450
+## 6 Adelie  Torgersen           39.3          20.6               190        3650
+## # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+</code></pre>
+<p>The first element in data visualization is your data.
+Lets tell R that we want to plot the data help in the variable <strong>penguins</strong>.</p>
+<pre><code>ggplot(penguins)
+</code></pre>
+<p>I will not actually execute this block, but give it a try yourself.
+Notice that nothing was added to our blank plot!
+This is because we must also add the second element of data visualization: <strong>aesthetics</strong>.</p>
+<h1 id="assigning-aesthetics">Assigning aesthetics</h1>
+<p>Aesthetics include things like which variable goes on the X axis, which variable goes on the Y axis, and what size, shape, or color you want your points/lines/bars to be.
+Let&rsquo;s explore the relationship between <em>bill length</em> (x-axis) and <em>bill depth</em> (y-axis) in our <code>penguins</code> data set.</p>
+<blockquote>
+<p>Note: To build layers with ggplot, we use the <code>+</code></p>
+</blockquote>
+<pre><code>ggplot(penguins) + aes(x = bill_length_mm, y = bill_depth_mm)
+
+</code></pre>
+<img src="../Bonus_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<p>Notice we now have axes labels!
+But nothing has shown up in the actual bounds of our plot because we are still missing our <strong>geometry</strong>.</p>
+<h1 id="adding-geometric-objects">Adding geometric objects</h1>
+<p>The final element we need to add is a <strong>geometric object</strong>.
+<strong>Geometric objects</strong> define the type of plot we want to make.
+Let&rsquo;s try plotting simple points.
+We will use <strong>geom_point()</strong>.</p>
+<pre><code>ggplot(penguins) + aes(x = bill_length_mm, y = bill_depth_mm) + geom_point()
+</code></pre>
+<img src="../Bonus_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<p>And now we can see our data!</p>
+<p>There are several plot types we can create using the <code>{ggplot2}</code> package.
+Here are a few key types:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>PLOT TYPES</strong></th>
+<th style="text-align:center"><strong>GGPLOT2 FUNCTIONS</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Initialize a ggplot</td>
+<td style="text-align:center">ggplot()</td>
+</tr>
+<tr>
+<td style="text-align:center">Scatter plot</td>
+<td style="text-align:center">geom_point()</td>
+</tr>
+<tr>
+<td style="text-align:center">Box plot</td>
+<td style="text-align:center">geom_boxplot()</td>
+</tr>
+<tr>
+<td style="text-align:center">Violin plot</td>
+<td style="text-align:center">geom_violin()</td>
+</tr>
+<tr>
+<td style="text-align:center">Scatter plot with dodge</td>
+<td style="text-align:center">geom_jitter()</td>
+</tr>
+<tr>
+<td style="text-align:center">Dot plot</td>
+<td style="text-align:center">geom_dotplot()</td>
+</tr>
+<tr>
+<td style="text-align:center">Bar chart</td>
+<td style="text-align:center">geom_bar() or geom_col()</td>
+</tr>
+<tr>
+<td style="text-align:center">Line plot</td>
+<td style="text-align:center">geom_line()</td>
+</tr>
+<tr>
+<td style="text-align:center">Histogram</td>
+<td style="text-align:center">geom_histogram()</td>
+</tr>
+<tr>
+<td style="text-align:center">Density plot</td>
+<td style="text-align:center">geom_density()</td>
+</tr>
+<tr>
+<td style="text-align:center">Error bars</td>
+<td style="text-align:center">geom_errorbar()</td>
+</tr>
+<tr>
+<td style="text-align:center">Title and axis labels</td>
+<td style="text-align:center">labs()</td>
+</tr>
+</tbody>
+</table>
+<h1 id="adding-more-aesthetics">Adding more aesthetics</h1>
+<p>Now that we have the basics, we can play around with aesthetics and other geometric objects.
+Let&rsquo;s start by adding to the aesthetics.
+Say we were interested in observing the relationship between <em>bill length</em> (x-axis) and <em>bill depth</em> (y-axis) <strong>by island</strong>.</p>
+<pre><code>ggplot(penguins) +
+  aes(x = bill_length_mm, y = bill_depth_mm, color = island) +
+  geom_point()
+</code></pre>
+<img src="../Bonus_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<p>By adding the designation for color to the <strong>aes()</strong> argument, R not only colors each point by its associated island, but also puts this information in the plot legend.</p>
+<blockquote>
+<p>Note: Typically we place information in <strong>aes()</strong> when we want to use information that is in our data frame.
+What if we placed color as an argument in <strong>geom_point()</strong>?
+Give it a try.</p>
+</blockquote>
+<h1 id="layering-geometric-objects">Layering geometric objects</h1>
+<p>Not only can we change the aesthetics but we can also change the geometric objects we are plotting.
+Let&rsquo;s explore our data using boxplots instead&hellip;</p>
+<p>Say we are interested in exploring how body mass differed across sex.</p>
+<pre><code>ggplot(penguins) +
+  aes(x = sex, y = body_mass_g) +
+  geom_boxplot()
+</code></pre>
+<img src="../Bonus_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<p>Although boxplots are great, they do hide the underlying data.
+To avoid this, we can also plot each observation as a point on top of the boxplots.
+This is as simple as adding <strong>geom_point()</strong> at the end with a <strong>+</strong>:</p>
+<pre><code>ggplot(penguins) +
+  aes(x = sex, y = body_mass_g) +
+  geom_boxplot() +
+  geom_point()
+</code></pre>
+<img src="../Bonus_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<blockquote>
+<p>I like to use a geometric object called <strong>geom_jitter(). geom_jitter()</strong> is similar to <strong>geom_point()</strong> but won&rsquo;t result in points laying directly on top of each other</p>
+<pre><code>ggplot(penguins) +
+  aes(x = sex, y = body_mass_g) +
+  geom_boxplot() +
+  geom_jitter()
+</code></pre>
+<img src="../Bonus_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<p>Using <strong>geom_jitter()</strong>, I also like to specify how much wiggle (or jitter) the points have.
+I like to keep their jitter pretty narrow.
+This can be changed by adding a width designation:</p>
+<pre><code>ggplot(penguins) +
+  aes(x = sex, y = body_mass_g) +
+  geom_boxplot() +
+  geom_jitter(width = 0.2)
+</code></pre>
+<img src="../Bonus_files/figure-html/unnamed-chunk-9-1.png" width="672" /> 
+</blockquote>
+<p>Something to keep in mind &ndash; the order that you add components to a plot will be the order they are added.
+As a personal preference I like having points in front of boxplots &ndash; this is why I add the boxplot first and the geom_jitter() second.</p>
+<h1 id="adding-plot-labels">Adding plot labels</h1>
+<p>The final thing I want to share is adding axes labels and titles to a plot.
+For this we use the function <strong>labs</strong>.</p>
+<pre><code>ggplot(penguins) +
+  aes(x = sex, y = body_mass_g) +
+  geom_boxplot() +
+  geom_jitter(width = 0.2) +
+  labs(x = &quot;Sex&quot;, y = &quot;Body mass (g)&quot;, title = &quot;Body mass of penguins given sex&quot;)
+</code></pre>
+<img src="../Bonus_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<p>And that is really about it.
+You can play around with what you want to plot in <strong>x</strong> and <strong>y</strong>, as well as aesthetics like size and color.\</p>
+<p><em>alpha just makes objects more transparent. The smaller the alpha the more transparent the object</em></p>
+<pre><code>ggplot(penguins) +
+  aes(x = sex, y = body_mass_g) +
+  geom_boxplot(size = 0.5) +
+  geom_jitter(width = 0.2, alpha = 0.5, aes(color = island)) +
+  labs(x = &quot;Sex&quot;, y = &quot;Body mass (g)&quot;, title = &quot;Body mass of penguins given sex&quot;)
+</code></pre>
+<img src="../Bonus_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<h1 id="putting-it-all-together">Putting it all together</h1>
+<p>With these basics and the powerful functions from <code>{dplyr}</code> for summarizing data, your plotting possibilities are truly endless.</p>
+<pre><code>library(dplyr)
+penguins %&gt;%
+  dplyr::group_by(species, island) %&gt;%
+  dplyr::summarize(avg_body_mass = mean(body_mass_g/1000, na.rm = TRUE)) %&gt;%
+  ggplot2::ggplot() +
+  aes(x = island, y = avg_body_mass, fill = island) +
+  geom_col() +
+  theme_classic() +
+  labs(x = &quot;Island&quot;, y = &quot;Average body mass (kg)&quot;, title = &quot;Average penguin body pass across islands&quot;)
+</code></pre>
+<img src="../Bonus_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/introR/material/day3/">Day 3: Data Wrangling</a></span>
+  <span class="nav-next"></span>
+</nav>
+
+
+
+
+
+<script src="//cdn.jsdelivr.net/npm/@xiee/utils/js/math-code.js" defer></script>
+<script src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+
+<script src="//cdn.jsdelivr.net/npm/@xiee/utils/js/center-img.js" defer></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn.jsdelivr.net/combine/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js,npm/@xiee/utils/js/load-highlight.js" defer></script>
+
+
+
+  
+  <hr>
+  <div class="copyright">Website built in R.
+Powered by <a href="https://gohugo.io/">Hugo</a>, <a href="https://github.com/rstudio/blogdown">blogdown</a> and <a href="https://github.com/yihui/hugo-ivy">the Ivy theme</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+

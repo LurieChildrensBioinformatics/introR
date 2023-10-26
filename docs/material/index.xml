@@ -8,6 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 26 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://luriechildrensbioinformatics.github.io/introR/material/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Bonus: A short intro to ggplot2</title>
+      <link>https://luriechildrensbioinformatics.github.io/introR/material/bonus/</link>
+      <pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://luriechildrensbioinformatics.github.io/introR/material/bonus/</guid>
+      <description>On day 3 we spent time discussing the {tidyverse} - a collection of R packages that share a common design philosophy, grammar, and structure. {ggplot2} is a powerful package within the tidyverse for producing elegant graphics piece by piece.
+The gg in ggplot2 means Grammar of Graphics, a graphic concept which describes plots by using a &amp;ldquo;grammar&amp;rdquo;. Similar to how sentences are composed of various parts of speech (e.g., nouns, verbs, adjectives), {ggplot2} allows us to create figures using a standard syntax.</description>
+    </item>
+    
+    <item>
       <title>Day 3: Data Wrangling</title>
       <link>https://luriechildrensbioinformatics.github.io/introR/material/day3/</link>
       <pubDate>Thu, 26 Oct 2023 00:00:00 +0000</pubDate>
