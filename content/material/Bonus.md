@@ -29,10 +29,6 @@ Like any R package, in order to use `{ggplot2}` functions, we must first load th
 library(ggplot2)
 ```
 
-```
-## Warning: package 'ggplot2' was built under R version 4.2.3
-```
-
 Now we can begin to use functions within the `{ggplot2}` package.
 Step one is to tell R to set up a plot.
 We do this by calling *`ggplot2::ggplot()`*.
@@ -52,13 +48,6 @@ Let's use the `palmerpenguins` data set once more.
 
 ```r
 library(palmerpenguins)
-```
-
-```
-## Warning: package 'palmerpenguins' was built under R version 4.2.3
-```
-
-```r
 penguins <- palmerpenguins::penguins
 head(penguins)
 ```
@@ -79,7 +68,7 @@ head(penguins)
 The first element in data visualization is your data.
 Lets tell R that we want to plot the data help in the variable **penguins**.
 
-    ggplot(penguins)
+    ggplot2::ggplot(penguins)
 
 I will not actually execute this block, but give it a try yourself.
 Notice that nothing was added to our blank plot!
@@ -93,8 +82,7 @@ Let's explore the relationship between *bill length* (x-axis) and *bill depth* (
 > Note: To build layers with ggplot, we use the `+`
 
 ```
-ggplot(penguins) + aes(x = bill_length_mm, y = bill_depth_mm)
-
+ggplot2::ggplot(penguins) + aes(x = bill_length_mm, y = bill_depth_mm)
 ```
 <img src="../Bonus_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
@@ -110,7 +98,7 @@ Let's try plotting simple points.
 We will use **geom_point()**.
 
 ```
-ggplot(penguins) + aes(x = bill_length_mm, y = bill_depth_mm) + geom_point()
+ggplot2::ggplot(penguins) + aes(x = bill_length_mm, y = bill_depth_mm) + geom_point()
 ```
 <img src="../Bonus_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
@@ -142,7 +130,7 @@ Let's start by adding to the aesthetics.
 Say we were interested in observing the relationship between *bill length* (x-axis) and *bill depth* (y-axis) **by island**.
 
 ```
-ggplot(penguins) +
+ggplot2::ggplot(penguins) +
   aes(x = bill_length_mm, y = bill_depth_mm, color = island) +
   geom_point()
 ```
@@ -164,7 +152,7 @@ Let's explore our data using boxplots instead...
 Say we are interested in exploring how body mass differed across sex.
 
 ```
-ggplot(penguins) +
+ggplot2::ggplot(penguins) +
   aes(x = sex, y = body_mass_g) +
   geom_boxplot()
 ```
@@ -257,7 +245,9 @@ penguins %>%
   aes(x = island, y = avg_body_mass, fill = island) +
   geom_col() +
   theme_classic() +
-  labs(x = "Island", y = "Average body mass (kg)", title = "Average penguin body pass across islands")
+  labs(x = "Island", 
+       y = "Average body mass (kg)", 
+       title = "Average penguin body pass across islands")
 ```
 
 <img src="../Bonus_files/figure-html/unnamed-chunk-12-1.png" width="672" />

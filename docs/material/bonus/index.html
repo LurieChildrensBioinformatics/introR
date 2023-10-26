@@ -113,8 +113,6 @@ We will take a look at each of these parts and see how together they build a plo
 <p>Like any R package, in order to use <code>{ggplot2}</code> functions, we must first load the library.</p>
 <pre><code class="language-r">library(ggplot2)
 </code></pre>
-<pre><code>## Warning: package 'ggplot2' was built under R version 4.2.3
-</code></pre>
 <p>Now we can begin to use functions within the <code>{ggplot2}</code> package.
 Step one is to tell R to set up a plot.
 We do this by calling <em><code>ggplot2::ggplot()</code></em>.
@@ -128,10 +126,7 @@ This will open up a blank plot to the right of your RStudio session under the Pl
 <p>Now that we have the framework for a plot set, we can specify which data set we are interested in visualizing.
 Let&rsquo;s use the <code>palmerpenguins</code> data set once more.</p>
 <pre><code class="language-r">library(palmerpenguins)
-</code></pre>
-<pre><code>## Warning: package 'palmerpenguins' was built under R version 4.2.3
-</code></pre>
-<pre><code class="language-r">penguins &lt;- palmerpenguins::penguins
+penguins &lt;- palmerpenguins::penguins
 head(penguins)
 </code></pre>
 <pre><code>## # A tibble: 6 × 8
